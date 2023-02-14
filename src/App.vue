@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <HomePage />
+  <router-view></router-view>
 </template>
 
 <style lang="scss">
