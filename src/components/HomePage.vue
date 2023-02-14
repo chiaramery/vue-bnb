@@ -1,4 +1,5 @@
 <script>
+import ApartmentDetails from '../pages/ApartmentDetails.vue';
 export default {
     name: 'HomePage',
 
