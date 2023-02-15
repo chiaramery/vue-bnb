@@ -1,6 +1,12 @@
 <script>
+import ApartmentMap from "../components/ApartmentMap.vue"; 
 export default {
   name: "ApartmentDetails",
+
+
+components: {
+ApartmentMap
+}
 };
 </script>
 <template>
@@ -53,6 +59,7 @@ export default {
         </div>
       </div>
     </div>
+<ApartmentMap />
   </div>
 </template>
 
