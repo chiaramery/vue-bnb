@@ -1,15 +1,19 @@
 <script>
 import HomePage from './components/HomePage.vue';
+import ApartmentDetails from './components/ApartmentDetails.vue';
 export default {
   name: 'App',
   components: {
-    HomePage
+    HomePage,
+    ApartmentDetails,
+    
+
   }
 }
 </script>
 
 <template>
-  <HomePage />
+  <router-view></router-view>
 </template>
 
 <style lang="scss">
