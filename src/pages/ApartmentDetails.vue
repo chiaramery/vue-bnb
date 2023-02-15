@@ -1,47 +1,67 @@
 <script>
+import axios from "axios";
+import AppHeader from "../components/AppHeader.vue";
 import ApartmentMap from "../components/ApartmentMap.vue"; 
 export default {
   name: "ApartmentDetails",
+  components: {
+  ApartmentMap,
+  AppHeader,
+  data() {
+        return {
+          baseUrl: "http://localhost:8000",
+          apartment: {}
+        }
+    },
+    created() {
+        const slug = this.$route.params.slug;
+        axios.get(`${this.baseUrl}/api/apartments/${slug}`).then(resp => {
+          this.apartment = resp.data.results.data;
+          console.log(this.apartment);
+          console.log(slug);
+          //   if (resp.data.success) {
+          //       // Caso del post trovato
+          //       this.apartment = resp.data.apartment;
+          //   } else {
+          //       // post non trovato => reindirizzo nella pagina not found
+          //       this.$router.push({ name: "not-found" });
+          //   }
+        });
+    },
+},
 
-
-components: {
-ApartmentMap
-}
 };
 </script>
 <template>
+  <AppHeader />
   <div class="container">
-    <div class="row">
+    <div class="row mb-4 g-2">
       <div class="col col-6 card border">
-        <div class="m-2">
-          <!-- <img src="" alt=""> -->
-          <h2>immagine</h2>
-        </div>
+          <img src="" alt="">
       </div>
 
-      <div class="col col-6">
-        <div class="card mt-2">
+      
+        <div class="card col col-6">
           <h2 class="text-center mt-3">Titolo appartamento</h2>
+
           <div class="description-wrapper">
             <div class="d-flex justify-content-center">
-              <a class="text-dark mx-3" href=""
-                >Via del bengodi 23 rimini italy</a
-              >
+              <a class="text-dark mx-3" href="">Via del bengodi 23 rimini italy</a>
             </div>
 
             <ul class="d-flex my-5">
-              <li>Numero di stanze</li>
+              <li>stanze</li>
               <li>
                 <i class="fa-solid fa-bed"></i>
-                Numero di letti
+                letti
               </li>
               <li>
                 <i class="fa-solid fa-bath"></i>
-                Numero di bagni
+                bagni
               </li>
 
               <li>
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-building"></i>
                 Metri quadrati
               </li>
             </ul>
@@ -57,7 +77,7 @@ ApartmentMap
             </ul>
           </div>
         </div>
-      </div>
+      
     </div>
 <ApartmentMap />
   </div>
@@ -67,11 +87,9 @@ ApartmentMap
 .container {
   margin-top: 80px;
   .row {
-    margin: 0 auto;
-    background-color: antiquewhite;
-    .col {
-      min-height: 50vh;
+    margin: 0 auto;     
       .card {
+        min-height: 50vh;
         .description-wrapper {
           width: 80%;
           margin: 1.5rem auto;
@@ -90,7 +108,6 @@ ApartmentMap
           }
         }
       }
-    }
   }
 }
 </style>

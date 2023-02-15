@@ -57,7 +57,7 @@ export default {
 </script>
 
 <template>
-  <div id='map' ref="mapRef"></div>
+  <div class="text-center" id='map' ref="mapRef"></div>
 </template> 
 
 <style>
