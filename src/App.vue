@@ -1,9 +1,13 @@
 <script>
 import HomePage from './components/HomePage.vue';
+import ApartmentDetails from './pages/ApartmentDetails.vue';
 export default {
   name: 'App',
   components: {
-    HomePage
+    HomePage,
+    ApartmentDetails,
+    
+
   }
 }
 </script>
