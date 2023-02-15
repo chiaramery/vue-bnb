@@ -22,32 +22,34 @@ export default {
                     <button type="button" class="btn btn-danger">Cerca</button>
                 </div>
 
-            </div>
-            <!-- /Jumbotron -->
-        </main>
-    </div>
-
+                <div class="card mt-5 mb-5" style="width: 16rem;">
+                    <img src="../img/prova-app.jpg" class="card-img-top" alt="prova-app.jpg">
+                    <div class="card-body">
+                        <h5>Card title</h5>
+                        <p>beds<i class="fa-solid fa-bed"></i></p>
+                        <p>shower<i class="fa-solid fa-shower"></i></p>
+                        <p>dot<i class="fa-solid fa-location-dot"></i></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 </template>
 
 <style scoped lang="scss">
 .jumbo-container {
-    background-image: url(../img/jumbotron.jpeg);
+    background-image: url(../img/jumbotron.jpg);
     background-size: cover;
 
     main {
-        .jumbotron {
-            height: 100vh;
-            width: 50%;
-            margin: 0 auto;
+        background-color: rgb(238 238 238);
+    }
+}
 
-            h1 {
-                padding-top: 20%;
-            }
-
-            .input-group {
-                padding-left: 6.5em;
-                width: 600px;
-            }
+main {
+    #apartment-promotion {
+        h3 {
+            padding-right: 3em;
         }
     }
 }
