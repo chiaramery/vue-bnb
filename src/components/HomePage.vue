@@ -1,26 +1,17 @@
 <script>
+import AppHeader from './AppHeader.vue';
 export default {
     name: 'HomePage',
+    components: {
+    AppHeader,
+  }
 }
 </script>
 
 <template>
     <div class="jumbo-container">
-        <header>
-            <!-- Navbar -->
-            <nav class="navbar">
-                <div class="container-fluid">
-                    <div class="logo">
-                        <a class="navbar-brand text-light" href="#">BoolBnB</a>
-                    </div>
-                    <div class="info">
-                        <a href="#">Sign in</a>
-                        <a href="#">Login</a>
-                    </div>
-                </div>
-            </nav>
-            <!-- /Navbar -->
-        </header>
+        <!-- Header -->
+        <AppHeader />
         <main>
             <!-- Jumbotron -->
             <div class="jumbotron">
@@ -42,20 +33,6 @@ export default {
 .jumbo-container {
     background-image: url(../img/jumbotron.jpeg);
     background-size: cover;
-
-    header {
-
-        .info {
-            margin: 1em;
-
-            a {
-                margin-right: 1em;
-                padding: .5em;
-                color: white;
-                text-decoration: none;
-            }
-        }
-    }
 
     main {
         .jumbotron {
