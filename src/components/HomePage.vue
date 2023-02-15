@@ -38,14 +38,15 @@ export default {
   </div>
   <main>
     <div class="div d-flex justify-content-center">
-      <h3>Appartamenti in evidenza</h3>
+      <h3 class="mt-4">Appartamenti in evidenza</h3>
     </div>
-    <div
-      class="appartamenti"
-      v-for="apartment in apartments"
-      :key="apartment.id"
-    >
-      <AppCard :apartment="apartment" />
+    <div class="appartamenti d-flex">
+      <AppCard
+        class="mt-4"
+        :apartment="apartment"
+        v-for="apartment in apartments"
+        :key="apartment.id"
+      />
     </div>
   </main>
 </template>
