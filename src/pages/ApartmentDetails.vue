@@ -2,14 +2,15 @@
 
 export default{
 name:'ApartmentDetails',
+
 }
 </script>
 <template>
     <div class="container">
         <div class="row ">
             
-            <div class="col col-6 bg-primary">
-                <div class="m-2 img-wrapper">
+            <div class="col col-6 card border">
+                <div class="m-2 ">
                     <!-- <img src="" alt=""> -->
                     <h2>immagine</h2> 
                 </div>
@@ -17,15 +18,10 @@ name:'ApartmentDetails',
 
             <div class=" col col-6">
                 <div class="card mt-2">
-                    <h2 class="text-center mt-3 " >Titolo riepilogativo che descriva l’appartamento</h2>
+                    <h2 class="text-center mt-3 " >Titolo appartamento</h2>
                     <div class="description-wrapper">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-center">
                             <a class="text-dark mx-3" href="">Via del bengodi 23 rimini italy</a>
-                            <div class="">
-                                <a class="text-dark mx-3" href="">condividi</a>
-                                <a class="text-dark mx-3" href="">salva</a>
-                            </div>
-
                         </div>
 
                         <ul class="d-flex my-5">
@@ -38,12 +34,12 @@ name:'ApartmentDetails',
                                 Numero di bagni</li>
 
                             <li>
-                                <i class="fa-light fa-house"></i>
+                                <i class="fa-solid fa-house"></i>
                                 Metri quadrati</li>
                         </ul>
                         <hr>
                         <h5 class="text-center mt-4">Servizi offerti:</h5>
-                        <ul class="d-flex">
+                        <ul class="d-flex justify-content-center">
                             <li>WiFi</li>
                             <li>Posto Macchina</li>
                             <li>Piscina</li>
@@ -75,10 +71,10 @@ name:'ApartmentDetails',
                     text-align: center ;
                     ul{
                         margin-top: 1em;
-                        justify-content: center;
+                        justify-content: space-between;
                         li{
                             list-style-type: none;
-                            margin-left: 1em;
+                            margin: 1.5em;
                         }
                     }
                     hr{
