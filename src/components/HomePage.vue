@@ -21,26 +21,43 @@ export default {
             </nav>
             <!-- /Navbar -->
         </header>
-        <main>
-            <!-- Jumbotron -->
-            <div class="jumbotron">
-                <h1 class="text-light text-center mt-5 mb-5">Cerca l'appartamento che fa per te</h1>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default">
-                    <button type="button" class="btn btn-danger">Cerca</button>
+        <!-- Jumbotron -->
+        <div class="jumbotron">
+            <h1 class="text-center mb-5">Cerca l'appartamento che fa per te</h1>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                <button type="button" class="btn btn-danger">Cerca</button>
+            </div>
+
+        </div>
+        <!-- /Jumbotron -->
+    </div>
+    <main>
+        <div class="container mt-3">
+            <section id="apartment-promotion">
+                <div class="d-flex justify-content-center">
+                    <h3 class="m-1">Appartamenti in evidenza</h3>
+                    <button type="button" class="btn btn-outline-danger">Vedi tutti</button>
                 </div>
 
-            </div>
-            <!-- /Jumbotron -->
-        </main>
-    </div>
-
+                <div class="card mt-5 mb-5" style="width: 16rem;">
+                    <img src="../img/prova-app.jpg" class="card-img-top" alt="prova-app.jpg">
+                    <div class="card-body">
+                        <h5>Card title</h5>
+                        <p>beds<i class="fa-solid fa-bed"></i></p>
+                        <p>shower<i class="fa-solid fa-shower"></i></p>
+                        <p>dot<i class="fa-solid fa-location-dot"></i></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 </template>
 
 <style scoped lang="scss">
 .jumbo-container {
-    background-image: url(../img/jumbotron.jpeg);
+    background-image: url(../img/jumbotron.jpg);
     background-size: cover;
 
     header {
@@ -57,20 +74,30 @@ export default {
         }
     }
 
+    .jumbotron {
+        height: 680px;
+        width: 50%;
+        margin: 0 auto;
+
+        h1 {
+            padding-top: 20%;
+        }
+
+        .input-group {
+            padding-left: 6.5em;
+            width: 600px;
+        }
+    }
+
     main {
-        .jumbotron {
-            height: 100vh;
-            width: 50%;
-            margin: 0 auto;
+        background-color: rgb(238 238 238);
+    }
+}
 
-            h1 {
-                padding-top: 20%;
-            }
-
-            .input-group {
-                padding-left: 6.5em;
-                width: 600px;
-            }
+main {
+    #apartment-promotion {
+        h3 {
+            padding-right: 3em;
         }
     }
 }
