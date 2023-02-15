@@ -1,9 +1,28 @@
 <script>
+import axios from "axios";
+import AppCard from "./AppCard.vue";
 import AppHeader from "./AppHeader.vue";
 export default {
   name: "HomePage",
+  data() {
+    return {
+      apartments: [],
+      baseUrl: "http://localhost:8000",
+    };
+  },
   components: {
     AppHeader,
+    AppCard,
+  },
+  methods: {
+    getApartments() {
+      axios.get(`${this.baseUrl}/api/apartments`).then((resp) => {
+        this.apartments = resp.data.results;
+      });
+    },
+  },
+  created() {
+    this.getApartments();
   },
 };
 </script>
@@ -14,34 +33,19 @@ export default {
     <AppHeader />
     <!-- Jumbotron -->
     <div class="jumbotron">
-      <h1 class="text-light text-center mt-5 mb-5">
-        Cerca l'appartamento che fa per te
-      </h1>
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-default"
-        />
-        <button type="button" class="btn btn-danger">Cerca</button>
-      </div>
+      <h1 class="text-center mt-5 mb-5">Cerca l'appartamento che fa per te</h1>
     </div>
   </div>
   <main>
-    <h3>Appartamenti in evidenza</h3>
-    <div class="card mt-5 mb-5" style="width: 16rem">
-      <img
-        src="../img/prova-app.jpg"
-        class="card-img-top"
-        alt="prova-app.jpg"
-      />
-      <div class="card-body">
-        <h5>Card title</h5>
-        <p>beds<i class="fa-solid fa-bed"></i></p>
-        <p>shower<i class="fa-solid fa-shower"></i></p>
-        <p>dot<i class="fa-solid fa-location-dot"></i></p>
-      </div>
+    <div class="div d-flex justify-content-center">
+      <h3>Appartamenti in evidenza</h3>
+    </div>
+    <div
+      class="appartamenti"
+      v-for="apartment in apartments"
+      :key="apartment.id"
+    >
+      <AppCard :apartment="apartment" />
     </div>
   </main>
 </template>
@@ -58,6 +62,7 @@ export default {
 
     h1 {
       padding-top: 20%;
+      color: black;
     }
 
     .input-group {
