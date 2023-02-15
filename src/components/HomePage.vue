@@ -2,6 +2,7 @@
 import axios from "axios";
 import AppCard from "./AppCard.vue";
 import AppHeader from "./AppHeader.vue";
+import SearchBox from "./SearchBox.vue";
 export default {
   name: "HomePage",
   data() {
@@ -13,6 +14,7 @@ export default {
   components: {
     AppHeader,
     AppCard,
+    SearchBox,
   },
   methods: {
     getApartments() {
@@ -34,6 +36,10 @@ export default {
     <!-- Jumbotron -->
     <div class="jumbotron">
       <h1 class="text-center mt-5 mb-5">Cerca l'appartamento che fa per te</h1>
+      <div class="search-container">
+        <SearchBox />
+        <button class="btn btn-primary">Search</button>
+      </div>
     </div>
   </div>
   <main>
@@ -41,7 +47,12 @@ export default {
       <h3 class="mt-4">Appartamenti in evidenza</h3>
     </div>
     <div class="appartamenti d-flex">
-      <AppCard class="mt-4" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
+      <AppCard
+        class="mt-4"
+        :apartment="apartment"
+        v-for="apartment in apartments"
+        :key="apartment.id"
+      />
     </div>
   </main>
 </template>
@@ -78,5 +89,14 @@ main {
       padding-right: 3em;
     }
   }
+}
+
+.search-container {
+  position: relative;
+}
+button {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
 }
 </style>
