@@ -17,8 +17,8 @@ const router = createRouter({
             component: SearchPage,
         },
         {
-            path: "/apartmentDetails",
-            name: "apartmentDetails",
+            path: "/apartments/:slug",
+            name: "apartment-details",
             component: ApartmentDetails,
         },
         // {

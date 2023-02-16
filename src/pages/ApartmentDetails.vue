@@ -7,6 +7,7 @@ export default {
   components: {
   ApartmentMap,
   AppHeader,
+  },
   data() {
         return {
           baseUrl: "http://localhost:8000",
@@ -15,10 +16,14 @@ export default {
     },
     created() {
         const slug = this.$route.params.slug;
+        // console.log(this.$route.params.slug);
+
+    
         axios.get(`${this.baseUrl}/api/apartments/${slug}`).then(resp => {
+            console.log(this.resp.data.results.data);
           this.apartment = resp.data.results.data;
           console.log(this.apartment);
-          console.log(slug);
+        //   console.log(slug);
           //   if (resp.data.success) {
           //       // Caso del post trovato
           //       this.apartment = resp.data.apartment;
@@ -28,10 +33,9 @@ export default {
           //   }
         });
     },
-},
-
-};
+}
 </script>
+
 <template>
   <AppHeader />
   <div class="container">
@@ -41,7 +45,7 @@ export default {
       </div>
 
       <div class="card col col-6">
-        <h2 class="text-center mt-3">{{apartment.title}}</h2>
+        <h2 class="text-center mt-3"></h2>
         <div class="description-wrapper">
           <div class="d-flex justify-content-center">
             <a class="text-dark mx-3" href="">Via del bengodi 23 rimini italy</a>
