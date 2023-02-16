@@ -40,41 +40,37 @@ export default {
           <img src="" alt="">
       </div>
 
-      
-        <div class="card col col-6">
-          <h2 class="text-center mt-3">Titolo appartamento</h2>
-
-          <div class="description-wrapper">
-            <div class="d-flex justify-content-center">
-              <a class="text-dark mx-3" href="">Via del bengodi 23 rimini italy</a>
-            </div>
-
-            <ul class="d-flex my-5">
-              <li>stanze</li>
-              <li>
-                <i class="fa-solid fa-bed"></i>
-                letti
-              </li>
-              <li>
-                <i class="fa-solid fa-bath"></i>
-                bagni
-              </li>
-
-              <li>
-                <i class="fa-solid fa-building"></i>
-                Metri quadrati
-              </li>
-            </ul>
-            <hr />
-            <h5 class="text-center mt-4">Servizi offerti:</h5>
-            <ul class="d-flex justify-content-center">
-              <li>WiFi</li>
-              <li>Posto Macchina</li>
-              <li>Piscina</li>
-              <li>Portineria</li>
-              <li>Sauna</li>
-              <li>Vista Mare</li>
-            </ul>
+      <div class="card col col-6">
+        <h2 class="text-center mt-3">{{apartment.title}}</h2>
+        <div class="description-wrapper">
+          <div class="d-flex justify-content-center">
+            <a class="text-dark mx-3" href="">Via del bengodi 23 rimini italy</a>
+          </div>
+          <ul class="d-flex my-5">
+            <li>stanze</li>
+            <li>
+              <i class="fa-solid fa-bed"></i>
+              letti
+            </li>
+            <li>
+              <i class="fa-solid fa-bath"></i>
+              bagni
+            </li>
+            <li>
+              <i class="fa-solid fa-building"></i>
+              Metri quadrati
+            </li>
+          </ul>
+          <hr />
+          <h5 class="text-center mt-4">Servizi offerti:</h5>
+          <ul class="d-flex justify-content-center">
+            <li>WiFi</li>
+            <li>Posto Macchina</li>
+            <li>Piscina</li>
+            <li>Portineria</li>
+            <li>Sauna</li>
+            <li>Vista Mare</li>
+          </ul>
           </div>
         </div>
       
