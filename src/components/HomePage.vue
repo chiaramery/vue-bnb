@@ -2,11 +2,16 @@
 import axios from "axios";
 import AppCard from "./AppCard.vue";
 import AppHeader from "./AppHeader.vue";
-import SearchBox from "./SearchBox.vue";
+// import SearchBox from "./SearchBox.vue";
 export default {
   name: "HomePage",
   data() {
     return {
+      query: "",
+      results: [],
+      selectedResult: null,
+      apartments: [],
+      listApartments: [],
       apartments: [],
       baseUrl: "http://localhost:8000",
     };
@@ -14,33 +19,57 @@ export default {
   components: {
     AppHeader,
     AppCard,
-    SearchBox,
+    // SearchBox,
   },
   methods: {
-    getApartments() {
-      axios.get(`${this.baseUrl}/api/apartments`).then((resp) => {
-        this.apartments = resp.data.results.data;
-      });
+    search: function () {
+      const query = this.query.trim();
+      if (query !== "") {
+        tt.services
+          .fuzzySearch({
+            key: "upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd",
+            query: query,
+            countrySet: "IT",
+            language: "it-IT",
+          })
+          .then((response) => {
+            this.results = response.results;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.results = [];
+      }
     },
-    handleResultSelected(result) {
-      // Gestisci il risultato selezionato qui
+    selectResult: function (result) {
+      this.query = result.address.freeformAddress;
+      this.selectedResult = result;
     },
-    search: function (query) {
-      const url = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
-        query
-      )}.json?key=upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd&countrySet=IT`;
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          this.results = data.results;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    closeResults: function () {
+      this.results = [];
+    },
+    filterResults() {
+      if (this.selectedResult) {
+        const params = {
+          longitude: this.selectedResult.position.lng,
+          latitude: this.selectedResult.position.lat,
+        };
+        axios
+          .get("http://localhost:8000/api/apartments", { params })
+          .then((resp) => {
+            console.log(resp.data);
+            this.apartments = resp.data.apartment;
+            console.log(this.apartments);
+          });
+      }
     },
   },
   created() {
-    this.getApartments();
+    document.addEventListener("click", this.closeResults);
+  },
+  beforeDestroy() {
+    document.removeEventListener("click", this.closeResults);
   },
 };
 </script>
@@ -55,7 +84,28 @@ export default {
       <div class="form">
         <h1 class="text-center">Cerca l'appartamento che fa per te :</h1>
         <div class="div">
-          <SearchBox @result-selected="handleResultSelected" />
+          <div>
+            <div class="autocomplete-input">
+              <input
+                type="text"
+                placeholder="Cerca"
+                v-model="query"
+                @input="search"
+              />
+              <ul class="autocomplete-results">
+                <li
+                  v-for="result in results"
+                  :key="result.id"
+                  @click="selectResult(result)"
+                >
+                  {{ result.address.freeformAddress }}
+                </li>
+              </ul>
+            </div>
+            <button class="btn btn-primary" @click="filterResults">
+              Filtra
+            </button>
+          </div>
         </div>
         <div class="ms_range-km-filter py-4">
           <h5 class="text-start">Modifica il raggio dei km</h5>
@@ -73,7 +123,7 @@ export default {
   </div>
   <main>
     <div class="d-flex justify-content-center">
-      <h3 class="mt-4">Appartamenti in evidenza</h3>
+      <h3 class="mt-4">Appartamenti Filtrati</h3>
     </div>
     <div class="appartamenti d-flex">
       <AppCard
@@ -129,5 +179,48 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.autocomplete-input {
+  position: relative;
+  display: inline-block;
+}
+
+.autocomplete-input input {
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.autocomplete-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.autocomplete-results li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-results li:hover {
+  background-color: #f1f1f1;
+}
+
+.autocomplete-results li.selected,
+.autocomplete-input input:focus {
+  background-color: #f1f1f1;
+  outline: none;
 }
 </style>

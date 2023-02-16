@@ -1,12 +1,11 @@
 <script>
-import ApartmentMap from "../components/ApartmentMap.vue"; 
+import ApartmentMap from "../components/ApartmentMap.vue";
 export default {
   name: "ApartmentDetails",
 
-
-components: {
-ApartmentMap
-}
+  components: {
+    ApartmentMap,
+  },
 };
 </script>
 <template>
@@ -59,7 +58,7 @@ ApartmentMap
         </div>
       </div>
     </div>
-<ApartmentMap />
+    <ApartmentMap />
   </div>
 </template>
 
