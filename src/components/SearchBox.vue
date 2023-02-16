@@ -1,34 +1,99 @@
 <script>
 export default {
-  name: "SearchBox",
-};
-let options = {
-  searchOptions: {
-    key: "3F5S2fGQztQekbPuQKbDAXBaFTJa7prv",
-    language: "it-IT",
-    limit: 5,
+  data() {
+    return {
+      query: "",
+      results: [],
+    };
   },
-  autocompleteOptions: {
-    key: "3F5S2fGQztQekbPuQKbDAXBaFTJa7prv",
-    language: "it-IT",
+  methods: {
+    search: function () {
+      const query = this.query.trim();
+      if (query !== "") {
+        tt.services
+          .fuzzySearch({
+            key: "upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd",
+            query: query,
+            countrySet: "IT",
+            language: "it-IT",
+          })
+          .then((response) => {
+            this.results = response.results;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.results = [];
+      }
+    },
+    selectResult: function (result) {
+      this.query = result.address.freeformAddress;
+      this.$emit("result-selected", result);
+    },
+  },
+  created() {
+    document.addEventListener("click", this.closeResults);
   },
 };
-let ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
-let searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-searchBoxHTML.setAttribute("id", "my-search-box");
-document.body.append(searchBoxHTML);
-
-tt.setProductInfo("geographic-coordinates");
 </script>
+
 <template>
-  <div id="my-search-box"></div>
+  <div class="autocomplete-input">
+    <input type="text" placeholder="Cerca" v-model="query" @input="search" />
+    <ul class="autocomplete-results">
+      <li
+        v-for="result in results"
+        :key="result.id"
+        @click="selectResult(result)"
+      >
+        {{ result.address.freeformAddress }}
+      </li>
+    </ul>
+  </div>
 </template>
 
-<style>
-#my-search-box {
+<style scoped>
+.autocomplete-input {
+  position: relative;
+  display: inline-block;
+}
+
+.autocomplete-input input {
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.autocomplete-results {
   position: absolute;
-  top: 500px;
-  left: 50%;
-  width: 20%;
+  top: 100%;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.autocomplete-results li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-results li:hover {
+  background-color: #f1f1f1;
+}
+
+.autocomplete-results li.selected,
+.autocomplete-input input:focus {
+  background-color: #f1f1f1;
+  outline: none;
 }
 </style>

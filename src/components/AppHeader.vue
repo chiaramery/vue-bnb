@@ -22,15 +22,15 @@ export default {
   <header>
     <!-- Navbar -->
     <nav class="navbar">
-      <div class="container-fluid">
+      <div class="container-fluid d-flex align-items-center">
         <div class="logo">
-          <a class="navbar-brand" href="#">BoolBnB</a>
+          <a class="navbar-brand btn btn-warning" href="#">BoolBnB</a>
         </div>
 
         <div class="info">
-          <ul class="navbar-nav d-flex">
+          <ul>
             <li
-              class="nav-item btn btn-warning me-3 mb-3"
+              class="nav-item btn btn-warning d-flex"
               v-for="(item, index) in menuItems"
               :key="index"
             >
@@ -56,4 +56,21 @@ export default {
   </header>
 </template>
 
-<style></style>
+<style lang="scss">
+header {
+  height: 100px;
+
+  .container-fluid {
+    height: 100px;
+  }
+  .info {
+    ul {
+      display: flex;
+      flex-direction: row;
+      li {
+        margin: 0 10px;
+      }
+    }
+  }
+}
+</style>

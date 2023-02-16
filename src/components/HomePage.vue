@@ -22,6 +22,22 @@ export default {
         this.apartments = resp.data.results.data;
       });
     },
+    handleResultSelected(result) {
+      // Gestisci il risultato selezionato qui
+    },
+    search: function (query) {
+      const url = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
+        query
+      )}.json?key=upEwnVbILIY3XpQgAsiO3mhPUP6dQdCd&countrySet=IT`;
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          this.results = data.results;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
   created() {
     this.getApartments();
@@ -34,11 +50,14 @@ export default {
     <!-- Header -->
     <AppHeader />
     <!-- Jumbotron -->
+
     <div class="jumbotron">
-      <h1 class="text-center mt-5 mb-5">Cerca l'appartamento che fa per te</h1>
-      <div class="search-container">
-        <SearchBox />
-        <button class="btn btn-primary">Search</button>
+      <div class="form">
+        <h1 class="text-center">Cerca l'appartamento che fa per te :</h1>
+        <div class="div">
+          <SearchBox @result-selected="handleResultSelected" />
+          <button class="btn btn-primary">cerca</button>
+        </div>
       </div>
     </div>
   </div>
@@ -91,12 +110,14 @@ main {
   }
 }
 
-.search-container {
-  position: relative;
-}
-button {
-  display: inline-block;
-  margin-left: 10px;
-  vertical-align: middle;
+.form {
+  margin: 0 auto;
+  width: 80%;
+  height: 400px;
+  background-color: lightgoldenrodyellow;
+  border-radius: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
