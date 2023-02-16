@@ -56,7 +56,6 @@ export default {
         <h1 class="text-center">Cerca l'appartamento che fa per te :</h1>
         <div class="div">
           <SearchBox @result-selected="handleResultSelected" />
-          <button class="btn btn-primary">cerca</button>
         </div>
         <div class="ms_range-km-filter py-4">
           <h5 class="text-start">Modifica il raggio dei km</h5>

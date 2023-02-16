@@ -1,9 +1,12 @@
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       query: "",
       results: [],
+      selectedResult: null,
+      apartments: [],
     };
   },
   methods: {
@@ -29,10 +32,35 @@ export default {
     },
     selectResult: function (result) {
       this.query = result.address.freeformAddress;
-      this.$emit("result-selected", result);
+      this.selectedResult = result;
     },
     closeResults: function () {
       this.results = [];
+    },
+    searchApartments: function () {
+      if (!this.selectedResult) {
+        return;
+      }
+
+      const url = "http://localhost:8000/api/apartments";
+      const params = {
+        lat: this.selectedResult.position.lat,
+        lng: this.selectedResult.position.lng,
+        radius: 20000,
+      };
+
+      axios
+        .get(url, { params })
+        .then((response) => {
+          this.apartments = response.data;
+          console.log(this.apartments);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    filterResults: function () {
+      this.searchApartments();
     },
   },
   created() {
@@ -45,17 +73,20 @@ export default {
 </script>
 
 <template>
-  <div class="autocomplete-input">
-    <input type="text" placeholder="Cerca" v-model="query" @input="search" />
-    <ul class="autocomplete-results">
-      <li
-        v-for="result in results"
-        :key="result.id"
-        @click="selectResult(result)"
-      >
-        {{ result.address.freeformAddress }}
-      </li>
-    </ul>
+  <div>
+    <div class="autocomplete-input">
+      <input type="text" placeholder="Cerca" v-model="query" @input="search" />
+      <ul class="autocomplete-results">
+        <li
+          v-for="result in results"
+          :key="result.id"
+          @click="selectResult(result)"
+        >
+          {{ result.address.freeformAddress }}
+        </li>
+      </ul>
+    </div>
+    <button @click="filterResults">Filtra</button>
   </div>
 </template>
 
