@@ -58,6 +58,17 @@ export default {
           <SearchBox @result-selected="handleResultSelected" />
           <button class="btn btn-primary">cerca</button>
         </div>
+        <div class="ms_range-km-filter py-4">
+          <h5 class="text-start">Modifica il raggio dei km</h5>
+          <label for="customRange2" class="form-label">Example range</label>
+          <input
+            type="range"
+            class="form-range"
+            min="0"
+            max="5"
+            id="customRange2"
+          />
+        </div>
       </div>
     </div>
   </div>

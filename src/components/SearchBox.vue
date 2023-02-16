@@ -31,9 +31,15 @@ export default {
       this.query = result.address.freeformAddress;
       this.$emit("result-selected", result);
     },
+    closeResults: function () {
+      this.results = [];
+    },
   },
   created() {
     document.addEventListener("click", this.closeResults);
+  },
+  beforeDestroy() {
+    document.removeEventListener("click", this.closeResults);
   },
 };
 </script>
