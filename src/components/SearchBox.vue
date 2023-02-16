@@ -37,30 +37,18 @@ export default {
     closeResults: function () {
       this.results = [];
     },
-    searchApartments: function () {
-      if (!this.selectedResult) {
-        return;
+    filterResults() {
+      if (this.selectedResult) {
+        const params = {
+          longitude: this.selectedResult.position.lng,
+          latitude: this.selectedResult.position.lat,
+        };
+        axios
+          .get("http://localhost:8000/api/apartments", { params })
+          .then((resp) => {
+            console.log(resp.data);
+          });
       }
-
-      const url = "http://localhost:8000/api/apartments";
-      const params = {
-        lat: this.selectedResult.position.lat,
-        lng: this.selectedResult.position.lng,
-        radius: 20000,
-      };
-
-      axios
-        .get(url, { params })
-        .then((response) => {
-          this.apartments = response.data;
-          console.log(this.apartments);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    filterResults: function () {
-      this.searchApartments();
     },
   },
   created() {
