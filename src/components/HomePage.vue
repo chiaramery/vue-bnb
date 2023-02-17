@@ -105,8 +105,12 @@ export default {
     <div class="d-flex justify-content-center">
       <h3 class="mt-4">Appartamenti Filtrati</h3>
     </div>
-    <div class="appartamenti d-flex">
-      <AppCard class="mt-4" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
+    <div class="appartamenti">
+      <div class="row">
+        <div class="col-10 col-md-6 col-lg-4">
+          <AppCard class="mt-4" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
+        </div>
+      </div>
     </div>
   </main>
 </template>
