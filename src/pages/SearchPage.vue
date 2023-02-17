@@ -9,6 +9,7 @@ export default {
       rooms: "",
       beds: "",
       bathrooms: "",
+      services: [],
     };
   },
   components: {
@@ -20,9 +21,11 @@ export default {
         beds: this.beds,
         bathrooms: this.bathrooms,
         rooms: this.rooms,
+        services: this.services,
       };
       axios.get("http://localhost:8000/api/filter", { params }).then((resp) => {
-        this.apartments = resp.data.results;
+        this.apartments = resp.data.apartments;
+        console.log(this.apartments);
       });
     },
   },
@@ -33,187 +36,92 @@ export default {
 </script>
 
 <template>
-  <div class="ms_wrapper-search-page py-5">
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-4 ms_sidebar-search p-5">
-          <h4 class="text-start">Filtra ricerca</h4>
-          <hr />
-          <form @submit.prevent="Filtra">
-            <label>Bagni :</label>
-            <input type="number" v-model="bathrooms" />
-            <br />
-            <label>Letti :</label>
-            <input type="number" v-model="beds" />
-            <br />
-            <label>Stanze :</label>
-            <input type="number" v-model="rooms" />
-            <br />
-            <button type="submit">Filtra</button>
-          </form>
+  <div class="container">
+    <form class="form-control" @submit.prevent="getApartments">
+      <label>Bagni :</label>
+      <input type="number" v-model="bathrooms" />
+      <br />
+      <label>Letti :</label>
+      <input type="number" v-model="beds" />
+      <br />
+      <label>Stanze :</label>
+      <input type="number" v-model="rooms" />
+      <br />
 
-          <!-- number of rooms filter  -->
-          <div class="ms_number-rooms-filter py-4">
-            <h5 class="text-start">Numero di stanze</h5>
-            <div
-              class="btn-group"
-              role="group"
-              aria-label="Basic checkbox toggle button group"
-            >
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="check2rooms"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="check2rooms"
-                >2 stanze</label
-              >
+      <label>Servizi:</label>
+      <div>
+        <input
+          type="checkbox"
+          name="services[]"
+          value="1"
+          id="wifi"
+          v-model="services"
+        />
+        <label for="wifi">Wi-Fi</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          name="services[]"
+          value="2"
+          id="parking"
+          v-model="services"
+        />
+        <label for="parking">Posto Macchina</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          name="services[]"
+          value="3"
+          id="pool"
+          v-model="services"
+        />
+        <label for="pool">Piscina</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          name="services[]"
+          value="4"
+          id="portineria"
+          v-model="services"
+        />
+        <label for="portineria">Portineria</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          name="services[]"
+          value="5"
+          id="sauna-"
+          v-model="services"
+        />
+        <label for="sauna-">Sauna</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          name="services[]"
+          value="6"
+          id="vistamare"
+          v-model="services"
+        />
+        <label for="vistamare">Vista Mare</label>
+      </div>
 
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="check3rooms"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="check3rooms"
-                >3 stanze</label
-              >
+      <button type="submit">Filtra</button>
+    </form>
 
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="check4rooms"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="check4rooms"
-                >4 stanze</label
-              >
-            </div>
-            <div
-              class="btn-group"
-              role="group"
-              aria-label="Basic checkbox toggle button group"
-            >
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="check5rooms"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="check5rooms"
-                >5 stanze</label
-              >
-
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="check6rooms"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="check6rooms"
-                >6 stanze</label
-              >
-            </div>
-          </div>
-
-          <!-- number of beds filter -->
-          <div class="ms_number-beds-filter py-4">
-            <h5 class="text-start">Numero di stanze</h5>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-
-          <!-- extra services filter  -->
-          <div class="ms_extra-services-filter py-4">
-            <h5 class="text-start">Servizi aggiuntivi</h5>
-            <div
-              class="btn-group"
-              role="group"
-              aria-label="Basic checkbox toggle button group"
-            >
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="wifi-service"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="wifi-service"
-                >WiFi</label
-              >
-
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="parking-car-service"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="parking-car-service"
-                >Posto auto</label
-              >
-
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="pool-service"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="pool-service"
-                >Piscina</label
-              >
-            </div>
-            <div
-              class="btn-group"
-              role="group"
-              aria-label="Basic checkbox toggle button group"
-            >
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="sauna-service"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="sauna-service"
-                >Sauna</label
-              >
-
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="sea-view-service"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="sea-view-service"
-                >Vista mare</label
-              >
-
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="concierge-service"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-primary" for="concierge-service"
-                >Portineria</label
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-8">
-          <h2>Appartamenti trovati</h2>
-          <div class="appartamenti flex-wrap d-flex">
-            <AppCard
-              class="mt-4"
-              :apartment="apartment"
-              v-for="apartment in apartments"
-              :key="apartment.id"
-            />
-          </div>
-        </div>
+    <div class="col-8">
+      <h2>Appartamenti trovati</h2>
+      <div class="appartamenti flex-wrap d-flex">
+        <AppCard
+          class="mt-4"
+          :apartment="apartment"
+          v-for="apartment in apartments"
+          :key="apartment.id"
+        />
       </div>
     </div>
   </div>

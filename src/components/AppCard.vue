@@ -35,6 +35,11 @@ export default {
       <p class="card-text">
         <i class="fa-solid fa-location-dot"></i> {{ apartment.address }}
       </p>
+      <p class="card-text">
+        <p   v-for="service in apartment.services"
+        >{{ service.name }}</p>
+        
+      </p>
       <router-link
         :to="{ name: 'single-apartment', params: { slug: apartment.slug } }"
         class="btn btn-secondary"
