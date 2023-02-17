@@ -86,18 +86,9 @@ export default {
         <div class="div">
           <div>
             <div class="autocomplete-input">
-              <input
-                type="text"
-                placeholder="Cerca"
-                v-model="query"
-                @input="search"
-              />
+              <input type="text" placeholder="Cerca" v-model="query" @input="search" />
               <ul class="autocomplete-results">
-                <li
-                  v-for="result in results"
-                  :key="result.id"
-                  @click="selectResult(result)"
-                >
+                <li v-for="result in results" :key="result.id" @click="selectResult(result)">
                   {{ result.address.freeformAddress }}
                 </li>
               </ul>
@@ -115,12 +106,7 @@ export default {
       <h3 class="mt-4">Appartamenti Filtrati</h3>
     </div>
     <div class="appartamenti d-flex">
-      <AppCard
-        class="mt-4"
-        :apartment="apartment"
-        v-for="apartment in apartments"
-        :key="apartment.id"
-      />
+      <AppCard class="mt-4" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
     </div>
   </main>
 </template>
@@ -140,10 +126,6 @@ export default {
       color: black;
     }
 
-    .input-group {
-      padding-left: 6.5em;
-      width: 600px;
-    }
   }
 
   main {
