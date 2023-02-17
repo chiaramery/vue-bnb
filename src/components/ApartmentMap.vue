@@ -9,38 +9,40 @@ export default {
       apartment: {},
       lati: null,
       long: null,
-    }
+    };
   },
   created() {
     const slug = this.$route.params.slug;
-    axios.get(`${this.url}/api/apartments/${slug}`).then((resp) => {
-      if (resp.data.success) {
-        // console.log('dentro la chiamata');
-        this.lati = resp.data.apartment.latitude;
-        this.long = resp.data.apartment.longitude;
-      }
-      // console.log(this.lati, this.long);
-    }).catch(error => {
-      if (error.response) {
-        // La risposta contiene un codice di stato diverso da 2xx
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // La richiesta è stata fatta ma non si è ricevuta risposta
-        console.log(error.request);
-      } else {
-        // Si è verificato un errore durante la richiesta
-        console.log('Error', error.message);
-      }
-      console.log(error.config);
-    });
+    axios
+      .get(`${this.url}/api/apartments/${slug}`)
+      .then((resp) => {
+        if (resp.data.success) {
+          // console.log('dentro la chiamata');
+          this.lati = resp.data.apartment.latitude;
+          this.long = resp.data.apartment.longitude;
+        }
+        // console.log(this.lati, this.long);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // La risposta contiene un codice di stato diverso da 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // La richiesta è stata fatta ma non si è ricevuta risposta
+          console.log(error.request);
+        } else {
+          // Si è verificato un errore durante la richiesta
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
+      });
   },
-
 
   setup() {
     const mapRef = ref(null);
-    const dotLocation = [12.67056, 41.531]
+    const dotLocation = [12.67056, 41.531];
     onMounted(() => {
       const tt = window.tt;
       var map = tt.map({
@@ -48,7 +50,7 @@ export default {
         container: mapRef.value,
         style: "tomtom://vector/1/basic-main",
         center: dotLocation,
-        zoom: 3,
+        zoom: 15,
       });
       var marker = new tt.Marker().setLngLat(dotLocation).addTo(map);
       map.addControl(new tt.FullscreenControl());
