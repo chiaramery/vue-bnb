@@ -29,12 +29,7 @@ export default {
     <div class="row">
       <div class="col col-6 card border">
         <div class="m-2">
-          <h2>immagine</h2>
-          <img
-            v-if="apartment.image"
-            :src="`${url}/storage/${apartment.image}`"
-            alt=""
-          />
+          <img v-if="apartment.image" :src="`${url}/storage/${apartment.image}`" alt="" />
           <p v-else>No Image</p>
         </div>
       </div>
@@ -75,7 +70,7 @@ export default {
       </div>
     </div>
     <section class="mt-5">
-      <h2>Mappa :</h2>
+      <!-- Mappa -->
       <ApartmentMap />
     </section>
   </div>
@@ -84,24 +79,30 @@ export default {
 <style lang="scss">
 .container {
   margin-top: 80px;
+
   .row {
     margin: 0 auto;
     background-color: antiquewhite;
+
     .col {
       min-height: 50vh;
+
       .card {
         .description-wrapper {
           width: 80%;
           margin: 1.5rem auto;
           text-align: center;
+
           ul {
             margin-top: 1em;
             justify-content: space-between;
+
             li {
               list-style-type: none;
               margin: 1.5em;
             }
           }
+
           hr {
             width: 70%;
             margin: 0 auto;
