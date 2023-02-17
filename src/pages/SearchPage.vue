@@ -6,7 +6,9 @@ export default {
   data() {
     return {
       apartments: [],
-      baseUrl: "http://localhost:8000",
+      rooms: "",
+      beds: "",
+      bathrooms: "",
     };
   },
   components: {
@@ -14,8 +16,13 @@ export default {
   },
   methods: {
     getApartments() {
-      axios.get(`${this.baseUrl}/api/apartments`).then((resp) => {
-        this.apartments = resp.data.results.data;
+      const params = {
+        beds: this.beds,
+        bathrooms: this.bathrooms,
+        rooms: this.rooms,
+      };
+      axios.get("http://localhost:8000/api/filter", { params }).then((resp) => {
+        this.apartments = resp.data.results;
       });
     },
   },
@@ -32,6 +39,19 @@ export default {
         <div class="col-4 ms_sidebar-search p-5">
           <h4 class="text-start">Filtra ricerca</h4>
           <hr />
+          <form @submit.prevent="Filtra">
+            <label>Bagni :</label>
+            <input type="number" v-model="bathrooms" />
+            <br />
+            <label>Letti :</label>
+            <input type="number" v-model="beds" />
+            <br />
+            <label>Stanze :</label>
+            <input type="number" v-model="rooms" />
+            <br />
+            <button type="submit">Filtra</button>
+          </form>
+
           <!-- number of rooms filter  -->
           <div class="ms_number-rooms-filter py-4">
             <h5 class="text-start">Numero di stanze</h5>
@@ -107,18 +127,7 @@ export default {
               <option value="3">Three</option>
             </select>
           </div>
-          <!-- range km filter -->
-          <div class="ms_range-km-filter py-4">
-            <h5 class="text-start">Modifica il raggio dei km</h5>
-            <label for="customRange2" class="form-label">Example range</label>
-            <input
-              type="range"
-              class="form-range"
-              min="0"
-              max="5"
-              id="customRange2"
-            />
-          </div>
+
           <!-- extra services filter  -->
           <div class="ms_extra-services-filter py-4">
             <h5 class="text-start">Servizi aggiuntivi</h5>

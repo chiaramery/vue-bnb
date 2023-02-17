@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./components/HomePage.vue";
 import SearchPage from "./pages/SearchPage.vue";
-
+import AppApartment from "./pages/AppApartment.vue";
 import ApartmentDetails from "./pages/ApartmentDetails.vue";
+import AppNotFound from "./pages/AppNotFound.vue";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -17,25 +19,20 @@ const router = createRouter({
       component: SearchPage,
     },
     {
-      path: "/apartmentDetails",
-      name: "apartmentDetails",
+      path: "/apartments",
+      name: "apartments",
+      component: AppApartment,
+    },
+    {
+      path: "/apartments/:slug",
+      name: "single-apartment",
       component: ApartmentDetails,
     },
-    // {
-    //     path: "/projects",
-    //     name: "projects",
-    //     component: ProjectsList,
-    // },
-    // {
-    //     path: "/projects/:slug",
-    //     name: "project-details",
-    //     component: ProjectDetails,
-    // },
-    // {
-    //     path: "/:pathMatch(.*)*",
-    //     name: "not-found",
-    //     component: NotFound,
-    // },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "not-found",
+      component: AppNotFound,
+    },
   ],
 });
 

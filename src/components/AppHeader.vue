@@ -12,6 +12,10 @@ export default {
           label: "Search Apartments",
           routeName: "search",
         },
+        {
+          label: "Apartments",
+          routeName: "apartments",
+        },
       ],
     };
   },
@@ -41,18 +45,10 @@ export default {
                 >{{ item.label }}</router-link
               >
             </li>
-            <!-- <li class="nav-item">
-                            <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
-                        </li> -->
           </ul>
         </div>
-        <!-- <div class="info">
-                    <a href="#">Sign in</a>
-                    <a href="#">Login</a>
-                </div> -->
       </div>
     </nav>
-    <!-- /Navbar -->
   </header>
 </template>
 
