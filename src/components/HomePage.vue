@@ -75,17 +75,19 @@ export default {
 </script>
 
 <template>
-  <div class="jumbo-container">
-    <!-- Header -->
-    <AppHeader />
-    <!-- Jumbotron -->
+  <div class="wrapper">
 
-    <div class="jumbotron">
-      <div class="form">
-        <h1 class="text-center">Cerca l'appartamento che fa per te :</h1>
-        <div class="div">
-          <div>
-            <div class="autocomplete-input">
+  
+    <div class="jumbo-container">
+      <!-- Header -->
+      <AppHeader />
+      <!-- Jumbotron -->
+
+      <div class="jumbotron">
+        <div class="form justify-content-center">
+          <h1 class="text-center my-4">Cerca l'appartamento che fa per te :</h1>
+          <div class="div-search-box">
+            <div class="autocomplete-input mt-4">
               <input type="text" placeholder="Cerca" v-model="query" @input="search" />
               <ul class="autocomplete-results">
                 <li v-for="result in results" :key="result.id" @click="selectResult(result)">
@@ -93,48 +95,49 @@ export default {
                 </li>
               </ul>
             </div>
-            <button class="btn btn-primary" @click="filterResults">
-              Filtra
-            </button>
+            <button class="btn ms_btn-main ms-2" @click="filterResults">FILTRA</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <main>
-    <div class="d-flex justify-content-center">
-      <h3 class="mt-4">Appartamenti Filtrati</h3>
-    </div>
-    <div class="appartamenti">
-      <div class="row">
-        <div class="col-10 col-md-6 col-lg-4">
-          <AppCard class="mt-4" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
-        </div>
+    <main>
+      <div class="d-flex justify-content-center">
+        <h3 class="mt-4">Appartamenti Filtrati</h3>
       </div>
-    </div>
-  </main>
+      <div class="appartamenti d-flex">
+        <AppCard class="mt-4" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
+      </div>
+    </main>
+  </div>
 </template>
 
 <style scoped lang="scss">
 .jumbo-container {
-  background-image: url(../img/jumbotron.jpg);
-  background-size: cover;
+  background-image:
+    linear-gradient(145deg, rgba(185, 32, 52, 0.43),  rgba(48, 54, 88, 0.82)),
+    url('../img/jumbotron.jpg');
+    width: 100%;
+    height: 750px;
+    color: white;
+    background-size: cover;
+    padding: 20px;
+    background-position: 25% 75%;
+    
 
-  .jumbotron {
-    height: 680px;
-    width: 50%;
-    margin: 0 auto;
-
-    h1 {
-      padding-top: 20%;
-      color: black;
+    .jumbotron {
+      width: 50%;
+      margin: 0 auto;
+      h1 {
+        font-weight: 550;
+        font-size: 45px;
+        letter-spacing: 1px;
+      }
     }
-
-  }
-
-  main {
-    background-color: rgb(238 238 238);
-  }
+  
+    main {
+      background-color: rgb(238 238 238);
+    }
+  
 }
 
 main {
@@ -147,55 +150,102 @@ main {
 
 .form {
   margin: 0 auto;
-  width: 80%;
+  width: 100%;
   height: 400px;
-  background-color: lightgoldenrodyellow;
   border-radius: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  .autocomplete-input {
+    position: relative;
+    display: inline-block;
+    input {
+      padding: 8px;
+      font-size: 16px;
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .autocomplete-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      max-height: 240px;
+      overflow-y: auto;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      .autocomplete-results li {
+        padding: 8px;
+        cursor: pointer;
+      }
+      
+      .autocomplete-results li:hover {
+        background-color: #303658;
+      }
+      
+      .autocomplete-input input:focus {
+        background-color: #303658;
+        outline: none;
+      }
+    }
+  }
+  .ms_btn-main {
+    position: relative;
+    background-color: #EC2B46;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    letter-spacing: 1px;
+    padding: 0.5em 1em;
+  }
+
+  .ms_btn-main:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+
+  .ms_btn-main:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+
+  // Small devices
+  @media screen and (max-width: 576px) {
+    .jumbo-container {
+      .form {
+        .div-search-box {
+          display: flex;
+          .ms_btn-main {
+            background-color: #303658;
+          }
+        }
+       
+
+      }
+    }
+  }
 }
 
-.autocomplete-input {
-  position: relative;
-  display: inline-block;
-}
 
-.autocomplete-input input {
-  padding: 8px;
-  font-size: 16px;
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.autocomplete-results {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  max-height: 240px;
-  overflow-y: auto;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-}
-
-.autocomplete-results li {
-  padding: 8px;
-  cursor: pointer;
-}
-
-.autocomplete-results li:hover {
-  background-color: #f1f1f1;
-}
-
-.autocomplete-results li.selected,
-.autocomplete-input input:focus {
-  background-color: #f1f1f1;
-  outline: none;
-}
 </style>
