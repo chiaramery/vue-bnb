@@ -85,7 +85,7 @@ export default {
 
       <div class="jumbotron">
         <div class="form justify-content-center">
-          <h1 class="text-center my-4">Cerca l'appartamento che fa per te :</h1>
+          <h1 class="text-center my-4">Cerca l'appartamento che fa per te</h1>
           <div class="div-search-box">
             <div class="autocomplete-input mt-4">
               <input type="text" placeholder="Cerca" v-model="query" @input="search" />
@@ -122,22 +122,84 @@ export default {
     background-size: cover;
     padding: 20px;
     background-position: 25% 75%;
-    
+  }  
 
-    .jumbotron {
-      width: 50%;
+  .jumbotron {
+    width: 50%;
+    margin: 0 auto;
+    .form {
       margin: 0 auto;
+      width: 100%;
+      height: 400px;
+      border-radius: 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       h1 {
         font-weight: 550;
         font-size: 45px;
         letter-spacing: 1px;
+        line-height: 1.5;
+        display: inline;
+        background-image: linear-gradient(
+          transparent 50%,
+          #303658 85%,
+          transparent 85%,
+          transparent 100%
+        );
+        background-repeat: no-repeat;
+        background-size: 0% 100%;
+        animation: animatedBackground 1s cubic-bezier(0.645, 0.045, 0.355, 1) 0.5s forwards;
+
+        @keyframes animatedBackground {
+            to {
+                background-size: 100% 100%;
+            }
+        }
       }
+      .autocomplete-input {
+        position: relative;
+        display: inline-block;
+        input {
+        padding: 8px;
+        font-size: 16px;
+        width: 300px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        
+        .autocomplete-results {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          z-index: 999;
+          width: 100%;
+          max-height: 240px;
+          overflow-y: auto;
+          margin: 0;
+          padding: 0;
+          background-color: #fff;
+          //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 4px;
+          .autocomplete-results li {
+            padding: 8px;
+            cursor: pointer;
+          }
+          
+          .autocomplete-results li:hover {
+            background-color: #303658;
+          }
+        
+        .autocomplete-input input:focus {
+          background-color: #303658;
+          outline: none;
+        }
+      }  
     }
-  
-    main {
-      background-color: rgb(238 238 238);
-    }
-  
+  }
+}
+main {
+  background-color: rgb(238 238 238);
 }
 
 main {
@@ -148,52 +210,7 @@ main {
   }
 }
 
-.form {
-  margin: 0 auto;
-  width: 100%;
-  height: 400px;
-  border-radius: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .autocomplete-input {
-    position: relative;
-    display: inline-block;
-    input {
-      padding: 8px;
-      font-size: 16px;
-      width: 300px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    .autocomplete-results {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      z-index: 999;
-      width: 100%;
-      max-height: 240px;
-      overflow-y: auto;
-      margin: 0;
-      padding: 0;
-      background-color: #fff;
-      //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
-      .autocomplete-results li {
-        padding: 8px;
-        cursor: pointer;
-      }
-      
-      .autocomplete-results li:hover {
-        background-color: #303658;
-      }
-      
-      .autocomplete-input input:focus {
-        background-color: #303658;
-        outline: none;
-      }
-    }
-  }
+
   .ms_btn-main {
     position: relative;
     background-color: #EC2B46;
