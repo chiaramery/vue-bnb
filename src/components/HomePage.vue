@@ -140,23 +140,6 @@ export default {
         font-weight: 550;
         font-size: 45px;
         letter-spacing: 1px;
-        line-height: 1.5;
-        display: inline;
-        background-image: linear-gradient(
-          transparent 50%,
-          #303658 85%,
-          transparent 85%,
-          transparent 100%
-        );
-        background-repeat: no-repeat;
-        background-size: 0% 100%;
-        animation: animatedBackground 1s cubic-bezier(0.645, 0.045, 0.355, 1) 0.5s forwards;
-
-        @keyframes animatedBackground {
-            to {
-                background-size: 100% 100%;
-            }
-        }
       }
       .autocomplete-input {
         position: relative;
@@ -179,7 +162,7 @@ export default {
           margin: 0;
           padding: 0;
           background-color: #fff;
-          //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
           border-radius: 4px;
           .autocomplete-results li {
             padding: 8px;
@@ -247,22 +230,19 @@ main {
     transition: 0s
   }
 
-  // Small devices
-  @media screen and (max-width: 576px) {
-    .jumbo-container {
+}// Media query - Small devices
+@media screen and (max-width:859px) {
+  .jumbo-container {
+    .jumbotron {
+      width: 100%;
+      margin: 0 auto;
       .form {
         .div-search-box {
           display: flex;
-          .ms_btn-main {
-            background-color: #303658;
-          }
+          flex-direction: column;
         }
-       
-
       }
     }
   }
 }
-
-
 </style>
