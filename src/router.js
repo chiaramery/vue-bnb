@@ -4,6 +4,7 @@ import SearchPage from "./pages/SearchPage.vue";
 import AppApartment from "./pages/AppApartment.vue";
 import ApartmentDetails from "./pages/ApartmentDetails.vue";
 import AppNotFound from "./pages/AppNotFound.vue";
+import AppRegister from "./pages/AppRegister.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -22,6 +23,11 @@ const router = createRouter({
       path: "/apartments",
       name: "apartments",
       component: AppApartment,
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: AppRegister,
     },
     {
       path: "/apartments/:slug",

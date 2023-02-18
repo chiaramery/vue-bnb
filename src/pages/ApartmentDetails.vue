@@ -9,6 +9,7 @@ export default {
       apartment: {},
       name: "",
       email: "",
+      apartment_id: "",
       message: "",
       loading: false,
       success: false,
@@ -23,6 +24,7 @@ export default {
     axios.get(`${this.url}/api/apartments/${slug}`).then((resp) => {
       if (resp.data.success) {
         this.apartment = resp.data.apartment;
+        this.apartment_id = resp.data.apartment.id;
       } else {
         this.$router.push({ name: "not-found" });
       }
@@ -35,6 +37,7 @@ export default {
         name: this.name,
         email: this.email,
         message: this.message,
+        apartment_id: this.apartment_id,
       };
       this.errors = {};
 
@@ -44,6 +47,7 @@ export default {
           this.name = "";
           this.email = "";
           this.message = "";
+          this.apartment_id = "";
         } else {
           console.log(resp.data);
           this.errors = resp.data.errors;
@@ -146,6 +150,14 @@ export default {
             class="form-control"
             v-model="message"
           ></textarea>
+        </div>
+
+        <div>
+          <input
+            type="hidden"
+            name="apartment_id"
+            v-model="this.apartment.apartment_id"
+          />
         </div>
 
         <button type="submit" class="btn btn-success">Invia</button>

@@ -45,6 +45,13 @@ export default {
                 >{{ item.label }}</router-link
               >
             </li>
+            <li>
+              <a
+                class="nav-item btn btn-warning d-flex"
+                href="http://localhost:8000/register"
+                >Registrati</a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -62,6 +69,7 @@ header {
   .info {
     ul {
       display: flex;
+      list-style-type: none;
       flex-direction: row;
       li {
         margin: 0 10px;
