@@ -79,7 +79,7 @@ export default {
     <!-- Header -->
     <AppHeader />
     <!-- Jumbotron -->
-    <div class="jumbotron">
+    <div class="jumbotron d-flex align-items-center">
       <div class="form justify-content-center">
 
         <h1 class="text-center my-3 mb-5">Cerca l'appartamento che fa per te</h1>
@@ -116,14 +116,14 @@ export default {
 
 <style scoped lang="scss">
 .jumbo-container {
+  width: 100%;
+  height: 800px;
   background-image:
     linear-gradient(145deg, rgba(185, 32, 52, 0.43),  rgba(48, 54, 88, 0.82)),
     url('../img/jumbotron.jpg');
     width: 100vw;
-    height: 80%;
     color: white;
     background-size: cover;
-    padding: 20px;
     background-position: 25% 75%;
 
 }
@@ -132,7 +132,8 @@ height: 680px;
 width: 50%;
 margin: 0 auto;
 h1 {
-  padding-top: 20%;
+  padding-top: 5%;
+  padding-bottom: .5em;
   color: white;
   font-weight: 550;
 }
@@ -173,7 +174,7 @@ align-items: center;
   overflow-y: auto;
   margin: 0;
   padding: 0;
-  background-color: rgba(255, 255, 255, 0.10);
+  background-color: rgba(48, 54, 88, 0.22);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
@@ -184,7 +185,7 @@ align-items: center;
 }
 
 .autocomplete-results li:hover {
-  background-color: rgba(48, 54, 88, 0.82);
+  background-color: rgba(48, 54, 88, 1);
 }
 
 .autocomplete-results li.selected,
