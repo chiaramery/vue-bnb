@@ -75,40 +75,43 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="jumbo-container">
+    <!-- Header -->
+    <AppHeader />
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+      <div class="form justify-content-center">
 
-  
-    <div class="jumbo-container">
-      <!-- Header -->
-      <AppHeader />
-      <!-- Jumbotron -->
-
-      <div class="jumbotron">
-        <div class="form justify-content-center">
-          <h1 class="text-center my-4">Cerca l'appartamento che fa per te</h1>
-          <div class="div-search-box">
-            <div class="autocomplete-input mt-4">
-              <input type="text" placeholder="Cerca" v-model="query" @input="search" />
-              <ul class="autocomplete-results">
-                <li v-for="result in results" :key="result.id" @click="selectResult(result)">
-                  {{ result.address.freeformAddress }}
-                </li>
-              </ul>
-            </div>
-            <button class="btn ms_btn-main ms-2" @click="filterResults">FILTRA</button>
+        <h1 class="text-center my-3 mb-5">Cerca l'appartamento che fa per te</h1>
+        <!-- SearchBox -->
+        <div class="div-search-box d-flex align-items-center">
+          <div class="autocomplete-input">
+            <input type="text" placeholder="Cerca" v-model="query" @input="search" />
+            <ul class="autocomplete-results">
+              <li v-for="result in results" :key="result.id" @click="selectResult(result)">
+                {{ result.address.freeformAddress }}
+              </li>
+            </ul>
+          </div>
+          <div class="container-btn-main">
+            <!-- SearchBox Button -->
+            <button class="btn btn-main ms-2" @click="filterResults">FILTRA</button>
+            <button class="btn btn-main btn-mobile ms-2" @click="filterResults"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
         </div>
+
       </div>
     </div>
-    <main>
-      <div class="d-flex justify-content-center">
-        <h3 class="mt-4">Appartamenti Filtrati</h3>
-      </div>
-      <div class="appartamenti d-flex">
-        <AppCard class="mt-4" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
-      </div>
-    </main>
   </div>
+  <main>
+    <div class="d-flex justify-content-center">
+      <h3 class="mt-4">Appartamenti Filtrati</h3>
+    </div>
+    <div class="appartamenti d-flex">
+      <AppCard class="mt-4" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
+    </div>
+  </main>
+
 </template>
 
 <style scoped lang="scss">
@@ -116,75 +119,122 @@ export default {
   background-image:
     linear-gradient(145deg, rgba(185, 32, 52, 0.43),  rgba(48, 54, 88, 0.82)),
     url('../img/jumbotron.jpg');
-    width: 100%;
-    height: 750px;
+    width: 100vw;
+    height: 80%;
     color: white;
     background-size: cover;
     padding: 20px;
     background-position: 25% 75%;
-  }  
 
-  .jumbotron {
-    width: 50%;
-    margin: 0 auto;
-    .form {
-      margin: 0 auto;
-      width: 100%;
-      height: 400px;
-      border-radius: 10%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+}
+.jumbotron {
+height: 680px;
+width: 50%;
+margin: 0 auto;
+h1 {
+  padding-top: 20%;
+  color: white;
+  font-weight: 550;
+}
+}
+.form {
+margin: 0 auto;
+width: 70%;
+height: 400px;
+border-radius: 10%;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.div-search-box {
+  width: 80%;
+}
+.autocomplete-input {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
 
-      h1 {
-        font-weight: 550;
-        font-size: 45px;
-        letter-spacing: 1px;
-      }
-      .autocomplete-input {
-        position: relative;
-        display: inline-block;
-        input {
-        padding: 8px;
-        font-size: 16px;
-        width: 300px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        
-        .autocomplete-results {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          z-index: 999;
-          width: 100%;
-          max-height: 240px;
-          overflow-y: auto;
-          margin: 0;
-          padding: 0;
-          background-color: #fff;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          border-radius: 4px;
-          .autocomplete-results li {
-            padding: 8px;
-            cursor: pointer;
-          }
-          
-          .autocomplete-results li:hover {
-            background-color: #303658;
-          }
-        
-        .autocomplete-input input:focus {
-          background-color: #303658;
-          outline: none;
-        }
-      }  
-    }
+.autocomplete-input input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.autocomplete-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.autocomplete-results li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-results li:hover {
+  background-color: rgba(48, 54, 88, 0.82);
+}
+
+.autocomplete-results li.selected,
+.autocomplete-input input:focus {
+  background-color: #f1f1f1;
+  outline: none;
+}
+.btn-main {
+  position: relative;
+  background-color: #EC2B46;
+  border: none;
+  font-size: 17px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  letter-spacing: 1px;
+  padding: 0.5em 1em;
+
+  &:hover {
+    background-color: rgba(185, 32, 52, 0.90);;
   }
+}
+.btn-main:after {
+  content: "";
+  background: #f1f1f1;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+.btn-main:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+.btn-mobile {
+  display: none;
 }
 main {
   background-color: rgb(238 238 238);
 }
-
 main {
   #apartment-promotion {
     h3 {
@@ -193,56 +243,33 @@ main {
   }
 }
 
-
-  .ms_btn-main {
-    position: relative;
-    background-color: #EC2B46;
-    border: none;
-    font-size: 17px;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-align: center;
-    transition-duration: 0.4s;
-    text-decoration: none;
-    overflow: hidden;
-    cursor: pointer;
-    letter-spacing: 1px;
-    padding: 0.5em 1em;
-  }
-
-  .ms_btn-main:after {
-    content: "";
-    background: #f1f1f1;
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px !important;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s
-  }
-
-  .ms_btn-main:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-  }
-
-}// Media query - Small devices
-@media screen and (max-width:859px) {
+// Media query - Small devices
+@media screen and (max-width:992px) {
   .jumbo-container {
     .jumbotron {
       width: 100%;
       margin: 0 auto;
       .form {
         .div-search-box {
+          width: 80%;
           display: flex;
-          flex-direction: column;
+        }
+        .btn-main {
+          display: none;
+        }
+        .btn-mobile {
+          display: block;
         }
       }
     }
+  }
+}
+
+// Media query - tablet devices
+@media screen and (max-width:1400px) {
+  .form {
+    width: 90%;
+      //margin: 0 auto;
   }
 }
 </style>
