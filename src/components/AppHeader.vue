@@ -144,7 +144,7 @@ export default {
 header {
   width: 100%;
   color: white;
-  background-color: rgba($color: #303658, $alpha: 0.25);
+  background-color: rgba($color: #303658, $alpha: 0.65);
   position: fixed;
   z-index: 100;
   transition: all 0.5s ease;
@@ -185,8 +185,8 @@ header {
       border-bottom: 1px solid transparent;
 
       &:hover {
-        color: #303658;
-        border-color: #303658;
+        color: #EC2B46;
+        border-color: #EC2B46;
       }
     }
     .logo {
