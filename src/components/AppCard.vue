@@ -39,13 +39,11 @@ export default {
 @use "../styles/general.scss" as *;
 
 .cards-bool {
-  margin-top: 100px;
-  margin-left: 100px;
-  width: 265px;
+  width: 100%;
   height: 330px;
 
-  :hover {
-    box-shadow: -1px -1px 2px 0px rgba(0, 0, 0, 0.2);
+  &:hover {
+
     transform: scale(1.02);
     cursor: pointer;
   }
@@ -119,7 +117,7 @@ export default {
       .btn-cards {
         text-decoration: none;
         padding: 0.75rem 3.75rem;
-        background-color: orange;
+        background-color: #EC2B46;
         border-radius: 0 20px 0 20px;
         color: white;
         font-weight: 700;

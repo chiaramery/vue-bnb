@@ -1,6 +1,9 @@
 <script>
 import axios from "axios";
 import AppCard from "../components/AppCard.vue";
+import AppHeaderVue from "../components/AppHeader.vue";
+import AppJumboRegister from "../components/AppJumboRegister.vue";
+
 export default {
   name: "SearchPage",
   data() {
@@ -10,10 +13,15 @@ export default {
       beds: "",
       bathrooms: "",
       services: [],
+      isActive: false,
     };
   },
   components: {
+    AppHeaderVue,
     AppCard,
+    AppJumboRegister,
+
+
   },
   methods: {
     getApartments() {
@@ -31,109 +39,206 @@ export default {
   },
   created() {
     this.getApartments();
+
   },
+
 };
 </script>
 
 <template>
-  <div class="container">
-    <form class="form-control" @submit.prevent="getApartments">
-      <label>Bagni :</label>
-      <input type="number" v-model="bathrooms" />
-      <br />
-      <label>Letti :</label>
-      <input type="number" v-model="beds" />
-      <br />
-      <label>Stanze :</label>
-      <input type="number" v-model="rooms" />
-      <br />
+  <div class="search-nav" :class="{ active: isActive }">
+    <div class="bottone">
+      <button @click="isActive = !isActive" class="btn-filters">
+        Filters
+        <i class="fa-solid fa-circle-chevron-right ms-2 moving"></i>
+      </button>
+    </div>
+    <div class="cont-filters">
+      <h4 class="h4 mb-4">Specifiche</h4>
+      <form class="form-control bg-transparent border-0 p-0" @submit.prevent="getApartments">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <label for="number">Bagni</label>
+          <input type="number" id="number" v-model="bathrooms" class="form-number text-end" />
+        </div>
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <label>Letti</label>
+          <input type="number" v-model="beds" class="form-number" />
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+          <label>Stanze</label>
+          <input type="number" v-model="rooms" class="form-number" />
+        </div>
 
-      <label>Servizi:</label>
-      <div>
-        <input
-          type="checkbox"
-          name="services[]"
-          value="1"
-          id="wifi"
-          v-model="services"
-        />
-        <label for="wifi">Wi-Fi</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          name="services[]"
-          value="2"
-          id="parking"
-          v-model="services"
-        />
-        <label for="parking">Posto Macchina</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          name="services[]"
-          value="3"
-          id="pool"
-          v-model="services"
-        />
-        <label for="pool">Piscina</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          name="services[]"
-          value="4"
-          id="portineria"
-          v-model="services"
-        />
-        <label for="portineria">Portineria</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          name="services[]"
-          value="5"
-          id="sauna-"
-          v-model="services"
-        />
-        <label for="sauna-">Sauna</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          name="services[]"
-          value="6"
-          id="vistamare"
-          v-model="services"
-        />
-        <label for="vistamare">Vista Mare</label>
-      </div>
 
-      <button type="submit">Filtra</button>
-    </form>
 
-    <div class="col-8">
-      <h2>Appartamenti trovati</h2>
-      <div class="appartamenti flex-wrap d-flex">
-        <AppCard
-          class="mt-4"
-          :apartment="apartment"
-          v-for="apartment in apartments"
-          :key="apartment.id"
-        />
+        <label class="h4 mt-4 mb-4 text-center">Servizi</label>
+        <div class="row">
+          <div class="col-6">
+            <label class="service" for="wifi">
+              <input type="checkbox" name="services[]" value="1" id="wifi" v-model="services" />
+              <span>Wifi</span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label class="service" for="parking">
+              <input type="checkbox" name="services[]" value="2" id="parking" v-model="services" />
+              <span>Parcheggio</span>
+            </label>
+
+          </div>
+          <div class="col-6">
+            <label class="service" for="pool">
+              <input type="checkbox" name="services[]" value="3" id="pool" v-model="services" />
+              <span>Piscina</span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label class="service" for="portineria">
+              <input type="checkbox" name="services[]" value="4" id="portineria" v-model="services" />
+              <span>Portineria</span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label class="service" for="sauna">
+              <input type="checkbox" name="services[]" value="5" id="sauna" v-model="services" />
+              <span>Sauna</span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label class="service" for="vistamare">
+              <input type="checkbox" name="services[]" value="6" id="vistamare" v-model="services" />
+              <span>Piscina</span>
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn-filter">Filtra</button>
+      </form>
+    </div>
+  </div>
+  <div class="contenitore-uno">
+    <div class="contenitore container">
+      <div class="row bg-white gy-4 justify-content-center justify-content-md-start">
+        <AppCard class="col-10 col-md-4 col-lg-3" :apartment="apartment" v-for="apartment in apartments"
+          :key="apartment.id" />
       </div>
     </div>
   </div>
+  <AppJumboRegister />
 </template>
 
 <style scoped lang="scss">
-.ms_wrapper-search-page {
-  background-color: #eeeeee;
-  .container {
-    .ms_sidebar-search {
+@use "../styles/general.scss" as *;
+
+.search-nav.active {
+  left: 0;
+}
+
+
+
+.search-nav {
+  position: absolute;
+  padding: 1.8rem;
+  width: 400px;
+  z-index: 50;
+  background-color: #EC2B46;
+  left: -400px;
+  top: 60px;
+  transition: all 0.4s ease-in-out;
+
+  .cont-filters {
+    .form-number {
       background-color: white;
+      width: 150px;
+      border-radius: 0.375rem;
+      border: none;
+      padding: 0.5rem;
+
+    }
+
+    label input[type="checkbox"] {
+      display: none;
+
+      &:checked~span {
+        background-color: orange;
+        box-shadow: 0 2px 6px orange;
+        color: black;
+      }
+    }
+
+    label span {
+      position: relative;
+      display: inline-block;
+      background-color: #424242;
+      padding: 0.2rem 1.6rem;
+      color: white;
+      border-radius: 0.375rem;
+      font-size: 1rem;
+      user-select: none;
+      transition: 0.5s;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background-color: rgba(255, 255, 255, 0.1)
+      }
     }
   }
+
+
+  /* .cont-filters.active {
+    left: 0;
+  } */
+  .btn-filters {
+    position: absolute;
+    top: 0;
+    right: -130px;
+    background-color: #EC2B46;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.3rem 1.8rem;
+  }
+
+  .btn-filter {
+    background-color: white;
+    color: orangered;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.3rem 1.8rem;
+    margin-top: 2.5rem;
+  }
+
+
+}
+
+.contenitore-uno {
+  padding-top: 10px;
+
+
+}
+
+
+/* Media query */
+@media screen and (max-width:776px) {
+  .search-nav {
+    width: 300px;
+    left: -300px;
+
+    .btn-filters {
+      background-color: black;
+      right: -100px;
+      padding: 0.3rem 1rem;
+
+    }
+  }
+
+
 }
 </style>

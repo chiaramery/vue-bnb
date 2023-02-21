@@ -1,7 +1,7 @@
 <script>
 import axios from "axios";
 import AppCard from "./AppCard.vue";
-import AppHeader from "./AppHeader.vue";
+/* import AppHeader from "./AppHeader.vue"; */
 // import SearchBox from "./SearchBox.vue";
 export default {
   name: "HomePage",
@@ -17,7 +17,7 @@ export default {
     };
   },
   components: {
-    AppHeader,
+    /* AppHeader, */
     AppCard,
     // SearchBox,
   },
@@ -77,7 +77,7 @@ export default {
 <template>
   <div class="jumbo-container">
     <!-- Header -->
-    <AppHeader />
+    <!-- <AppHeader /> -->
     <!-- Jumbotron -->
     <div class="jumbotron d-flex align-items-center">
       <div class="form justify-content-center">
@@ -96,7 +96,8 @@ export default {
           <div class="container-btn-main">
             <!-- SearchBox Button -->
             <button class="btn btn-main ms-2" @click="filterResults">FILTRA</button>
-            <button class="btn btn-main btn-mobile ms-2" @click="filterResults"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="btn btn-main btn-mobile ms-2" @click="filterResults"><i
+                class="fa-solid fa-magnifying-glass"></i></button>
           </div>
         </div>
 
@@ -104,14 +105,13 @@ export default {
     </div>
   </div>
   <main>
-    <div class="d-flex justify-content-center">
-      <h3 class="mt-4">Appartamenti Filtrati</h3>
-    </div>
-    <div class="appartamenti d-flex">
-      <AppCard class="mt-4" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
+    <div class="container">
+      <div class="row bg-light gy-4 justify-content-center justify-content-md-start">
+        <AppCard class="col-10 col-md-4 col-lg-3" :apartment="apartment" v-for="apartment in apartments"
+          :key="apartment.id" />
+      </div>
     </div>
   </main>
-
 </template>
 
 <style scoped lang="scss">
@@ -119,37 +119,42 @@ export default {
   width: 100%;
   height: 800px;
   background-image:
-    linear-gradient(145deg, rgba(185, 32, 52, 0.43),  rgba(48, 54, 88, 0.82)),
+    linear-gradient(145deg, rgba(185, 32, 52, 0.43), rgba(48, 54, 88, 0.82)),
     url('../img/jumbotron.jpg');
-    width: 100vw;
-    color: white;
-    background-size: cover;
-    background-position: 25% 75%;
+  width: 100vw;
+  color: white;
+  background-size: cover;
+  background-position: 25% 75%;
 
 }
+
 .jumbotron {
-height: 680px;
-width: 50%;
-margin: 0 auto;
-h1 {
-  padding-top: 5%;
-  padding-bottom: .5em;
-  color: white;
-  font-weight: 550;
+  height: 680px;
+  width: 50%;
+  margin: 0 auto;
+
+  h1 {
+    padding-top: 5%;
+    padding-bottom: .5em;
+    color: white;
+    font-weight: 550;
+  }
 }
-}
+
 .form {
-margin: 0 auto;
-width: 70%;
-height: 400px;
-border-radius: 10%;
-display: flex;
-flex-direction: column;
-align-items: center;
+  margin: 0 auto;
+  width: 70%;
+  height: 400px;
+  border-radius: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .div-search-box {
   width: 80%;
 }
+
 .autocomplete-input {
   width: 100%;
   position: relative;
@@ -193,6 +198,7 @@ align-items: center;
   background-color: #f1f1f1;
   outline: none;
 }
+
 .btn-main {
   position: relative;
   background-color: #EC2B46;
@@ -209,9 +215,11 @@ align-items: center;
   padding: 0.5em 1em;
 
   &:hover {
-    background-color: rgba(185, 32, 52, 0.90);;
+    background-color: rgba(185, 32, 52, 0.90);
+    ;
   }
 }
+
 .btn-main:after {
   content: "";
   background: #f1f1f1;
@@ -224,18 +232,22 @@ align-items: center;
   opacity: 0;
   transition: all 0.8s
 }
+
 .btn-main:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
   transition: 0s
 }
+
 .btn-mobile {
   display: none;
 }
+
 main {
   background-color: rgb(238 238 238);
 }
+
 main {
   #apartment-promotion {
     h3 {
@@ -250,14 +262,17 @@ main {
     .jumbotron {
       width: 100%;
       margin: 0 auto;
+
       .form {
         .div-search-box {
           width: 80%;
           display: flex;
         }
+
         .btn-main {
           display: none;
         }
+
         .btn-mobile {
           display: block;
         }
@@ -270,7 +285,7 @@ main {
 @media screen and (max-width:1400px) {
   .form {
     width: 90%;
-      //margin: 0 auto;
+    //margin: 0 auto;
   }
 }
 </style>

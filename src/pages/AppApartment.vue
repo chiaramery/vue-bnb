@@ -25,16 +25,12 @@ export default {
 </script>
 
 <template>
-  <h1>Tutti i nostri appartamenti :</h1>
-  <section class="allcard flex-wrap">
-    <div class="row justify-content-center">
-      <div class="d-flex flex-wrap gap-4">
-        <AppCard
-          :apartment="apartment"
-          v-for="apartment in apartments"
-          :key="apartment.id"
-        />
-      </div>
+  <div class="container mt-0 mb-4">
+    <h3>Tutti i nostri appartamenti :</h3>
+
+    <div class="row bg-white gy-4 justify-content-center justify-content-md-start">
+      <AppCard class="col-10 col-md-4 col-lg-3" :apartment="apartment" v-for="apartment in apartments"
+        :key="apartment.id" />
     </div>
-  </section>
+  </div>
 </template>
