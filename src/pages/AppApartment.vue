@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
-import AppCard from "../components/AppCard.vue";
+import AppList from "../components/AppList.vue";
+import AppBackAnimation from "../components/AppBackAnimation.vue";
 export default {
   name: "AppApartment",
   data() {
@@ -9,7 +10,11 @@ export default {
       url: "http://localhost:8000",
     };
   },
-  components: { AppCard },
+  components: {
+    AppList,
+    AppBackAnimation,
+
+  },
   created() {
     this.getApartments();
   },
@@ -25,12 +30,25 @@ export default {
 </script>
 
 <template>
-  <div class="container mt-0 mb-4">
-    <h3>Tutti i nostri appartamenti :</h3>
-
-    <div class="row bg-white gy-4 justify-content-center justify-content-md-start">
-      <AppCard class="col-10 col-md-4 col-lg-3" :apartment="apartment" v-for="apartment in apartments"
-        :key="apartment.id" />
+  <AppBackAnimation />
+  <div class="contenitore-uno">
+    <div class="contenitore container">
+      <div class="row bg-white-s gy-4 justify-content-center justify-content-lg-start">
+        <AppList class="col-10 p-0" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
+      </div>
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+@use "../styles/general.scss" as *;
+
+.contenitore-uno {
+  padding-top: 10px;
+  margin: 0 auto;
+
+  .bg-white-s {
+    background-color: rgba(255, 255, 255, 0);
+  }
+}
+</style>

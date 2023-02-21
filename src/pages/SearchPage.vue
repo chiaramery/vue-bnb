@@ -54,24 +54,24 @@ export default {
       </button>
     </div>
     <div class="cont-filters">
-      <h4 class="h4 mb-4">Specifiche</h4>
+      <h4 class="h4 mb-4 text-white">Specifiche</h4>
       <form class="form-control bg-transparent border-0 p-0" @submit.prevent="getApartments">
         <div class="d-flex align-items-center justify-content-between mb-2">
-          <label for="number">Bagni</label>
+          <label class="text-white" for="number">Bagni</label>
           <input type="number" id="number" v-model="bathrooms" class="form-number text-end" />
         </div>
         <div class="d-flex align-items-center justify-content-between mb-2">
-          <label>Letti</label>
+          <label class="text-white">Letti</label>
           <input type="number" v-model="beds" class="form-number" />
         </div>
         <div class="d-flex align-items-center justify-content-between">
-          <label>Stanze</label>
+          <label class="text-white">Stanze</label>
           <input type="number" v-model="rooms" class="form-number" />
         </div>
 
 
 
-        <label class="h4 mt-4 mb-4 text-center">Servizi</label>
+        <label class="h4 mt-4 mb-4 text-center text-white">Servizi</label>
         <div class="row">
           <div class="col-6">
             <label class="service" for="wifi">
@@ -116,8 +116,8 @@ export default {
     </div>
   </div>
   <div class="contenitore-uno">
-    <div class="contenitore container">
-      <div class="row bg-white gy-4 justify-content-center justify-content-md-start">
+    <div class="container">
+      <div class="row bg-white-s gy-4 justify-content-center justify-content-md-start">
         <AppCard class="col-10 col-md-4 col-lg-3" :apartment="apartment" v-for="apartment in apartments"
           :key="apartment.id" />
       </div>
@@ -159,18 +159,18 @@ export default {
       display: none;
 
       &:checked~span {
-        background-color: orange;
-        box-shadow: 0 2px 6px orange;
-        color: black;
+        background-color: #303658;
+        box-shadow: 0 2px 6px #1c2138;
+        color: white;
       }
     }
 
     label span {
       position: relative;
       display: inline-block;
-      background-color: #424242;
+      background-color: white;
       padding: 0.2rem 1.6rem;
-      color: white;
+      color: #EC2B46;
       border-radius: 0.375rem;
       font-size: 1rem;
       user-select: none;
@@ -206,7 +206,7 @@ export default {
 
   .btn-filter {
     background-color: white;
-    color: orangered;
+    color: #EC2B46;
     text-transform: uppercase;
     font-weight: 600;
     border: none;
@@ -221,6 +221,9 @@ export default {
 .contenitore-uno {
   padding-top: 10px;
 
+  .bg-white-s {
+    background-color: rgba(255, 255, 255, 0);
+  }
 
 }
 
@@ -232,7 +235,7 @@ export default {
     left: -300px;
 
     .btn-filters {
-      background-color: black;
+      background-color: #303658;
       right: -100px;
       padding: 0.3rem 1rem;
 

@@ -59,36 +59,36 @@ export default {
 
 <template><!-- Navbar -->
   <!-- <nav class="navbar">
-        <div class="container-fluid d-flex align-items-center">
-          <div class="logo">
-            <a class="navbar-brand btn btn-warning" href="http://localhost:8000">BoolBnB</a>
-          </div>
+          <div class="container-fluid d-flex align-items-center">
+            <div class="logo">
+              <a class="navbar-brand btn btn-warning" href="http://localhost:8000">BoolBnB</a>
+            </div>
 
-          <div class="info">
-            <ul>
-              <li
-                class="nav-item btn btn-warning d-flex"
-                v-for="(item, index) in menuItems"
-                :key="index"
-              >
-                <router-link
-                  :to="{ name: item.routeName }"
-                  class="nav-link"
-                  aria-current="page"
-                  >{{ item.label }}</router-link
-                >
-              </li>
-              <li>
-                <a
+            <div class="info">
+              <ul>
+                <li
                   class="nav-item btn btn-warning d-flex"
-                  href="http://localhost:8000/register"
-                  >Registrati</a
+                  v-for="(item, index) in menuItems"
+                  :key="index"
                 >
-              </li>
-            </ul>
+                  <router-link
+                    :to="{ name: item.routeName }"
+                    class="nav-link"
+                    aria-current="page"
+                    >{{ item.label }}</router-link
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-item btn btn-warning d-flex"
+                    href="http://localhost:8000/register"
+                    >Registrati</a
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav> -->
+        </nav> -->
   <header :class="{ 'scrolled-nav': scrolledNav }">
     <nav class="d-flex justify-content-between pt-3">
       <div class="logo">
@@ -270,4 +270,5 @@ header {
   nav {
     padding: 8px 0;
   }
-}</style>
+}
+</style>

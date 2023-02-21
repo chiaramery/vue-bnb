@@ -24,7 +24,7 @@ export default {
 
     .img-jumbo {
         width: 100%;
-        height: 400px;
+        height: 500px;
         background-image: url(../img/jumbotron.jpg);
         background-size: cover;
         background-position: center;
@@ -38,10 +38,12 @@ export default {
 
         .btn-register {
             padding: 0.8rem 1.6rem;
-            background-color: orangered;
+            background-color: #EC2B46;
             border-radius: 0.5rem;
             text-decoration: none;
             position: absolute;
+            text-transform: uppercase;
+            font-weight: 700;
             bottom: 30px;
             left: 50%;
             z-index: 100;
@@ -50,11 +52,16 @@ export default {
             transform: translateX(-50%);
             visibility: hidden;
             opacity: 0;
+
+            &:hover {
+                background-color: rgba(185, 32, 52, 0.90);
+            }
         }
 
         &:hover .btn-register {
             visibility: visible;
             opacity: 1;
+
         }
 
 
@@ -97,30 +104,39 @@ export default {
             }
         }
     }
-}
 
-@media screen and (max-width:1410px) {
-    .img-jumbo {
-        h2 {
-            font-size: 90px;
+
+    @media screen and (max-width:1410px) {
+        .img-jumbo {
+            height: 400px;
+
+            h2 {
+                font-size: 70px;
+            }
         }
     }
-}
 
-@media screen and (max-width:977px) {
-    .img-jumbo {
-        h2 {
-            font-size: 70px;
+    @media screen and (max-width:977px) {
+
+        .img-jumbo {
+            h2 {
+                font-size: 60px;
+            }
+
+            .btn-register {
+                visibility: visible;
+                opacity: 1;
+            }
         }
     }
-}
 
-@media screen and (max-width:776px) {
-    .img-jumbo {
-        height: 500px;
+    @media screen and (max-width:776px) {
+        .img-jumbo {
+            height: 500px;
 
-        h2 {
-            font-size: 35px;
+            h2 {
+                font-size: 35px;
+            }
         }
     }
 }
