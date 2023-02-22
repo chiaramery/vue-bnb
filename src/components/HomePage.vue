@@ -144,7 +144,7 @@ export default {
       rgba(48, 54, 88, 0.82)
     ),
     url("../img/jumbotron.jpg");
-  width: 100vw;
+  width: 100%;
   color: white;
   background-size: cover;
   background-position: 25% 75%;

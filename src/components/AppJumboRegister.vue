@@ -25,9 +25,9 @@ export default {
     .img-jumbo {
         width: 100%;
         height: 500px;
-        background-image: url(../img/jumbotron.jpg);
+        background-image: url(../img/img-jumbo-reg.jpg);
         background-size: cover;
-        background-position: center;
+        background-position: bottom;
         position: relative;
         display: flex;
         align-items: center;
