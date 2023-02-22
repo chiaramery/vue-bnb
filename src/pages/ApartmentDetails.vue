@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import ApartmentMap from "../components/ApartmentMap.vue";
+import AppBackAnimation from "../components/AppBackAnimation.vue";
 export default {
   name: "ApartmentDetails",
   data() {
@@ -18,6 +19,7 @@ export default {
   },
   components: {
     ApartmentMap,
+    AppBackAnimation
   },
   created() {
     const slug = this.$route.params.slug;
@@ -59,6 +61,7 @@ export default {
 };
 </script>
 <template>
+  <AppBackAnimation />
   <div class="container">
     <div class="row">
       <div class="col col-6 card border">
