@@ -24,9 +24,9 @@ export default {
         <img :src="`${baseUrl}/storage/${apartment.image}`" alt="" />
       </div>
       <div class="title">
-        <div v-if="apartment.is_active" class="favorite" style="color: yellow">
-          <i class="fas fa-star"></i>
-          <span>Preferiti dall'utente</span>
+        <div v-if="apartment.is_active" class="favorite">
+          <i class="fas fa-star me-2"></i>
+          <span>In primo piano</span>
         </div>
         <h4 class="t-card">{{ apartment.title }}</h4>
         <p class="s-card">{{ apartment.address }}</p>
@@ -70,8 +70,34 @@ export default {
       height: 100%;
       top: 0;
       left: 0;
-      opacity: 0.3;
+      opacity: 0.5;
       border-radius: 0 20px 0 20px;
+    }
+    .favorite {
+      position: absolute;
+      top: 150px;
+      width: 100%;
+      padding: 10px 0;
+      color: rgb(248, 255, 43);
+      background-color: rgba($color: #303658, $alpha: 0.65);
+      left: 50%;
+      transform: translateX(-50%);
+
+      i {
+        animation: star infinite 1s;
+        @keyframes star {
+          from {
+            transform: scale(1);
+            color: rgb(183, 188, 34);
+          }
+
+          to {
+            transform: scale(1.3);
+
+            color: rgb(248, 255, 43);
+          }
+        }
+      }
     }
 
     .img-body {
