@@ -1,7 +1,6 @@
 <script>
 import axios from "axios";
 import ApartmentMap from "../components/ApartmentMap.vue";
-import AppHeader from "../components/AppHeader.vue";
 export default {
   name: "ApartmentDetails",
   data() {
@@ -19,7 +18,6 @@ export default {
   },
   components: {
     ApartmentMap,
-    AppHeader,
   },
   created() {
     const slug = this.$route.params.slug;
@@ -61,31 +59,32 @@ export default {
 };
 </script>
 <template>
-  <section>
-    <!-- Header -->
-    <AppHeader />
-
-  </section>
   <div class="container">
-    <div class="row">
-      <div class="col col-7 card border">
-        <div class="m-2">
-          <img
+    <div class="row justify-content-center">
+      <h2 class=" mt-3">{{ apartment.title }}</h2>
+      <p class="text-address mx-3" href="">{{ apartment.address }}</p>
+      <!-- Image -->
+      <div class="col-lg-8 col-sm-10 ms_card">
+        <div class="container-image">
+          <img src="../img/jumbotron.jpg" alt="">
+          <!-- <img
             v-if="apartment.image"
             :src="`${url}/storage/${apartment.image}`"
             alt=""
           />
-          <p v-else>No Image</p>
+          <p v-else>No Image</p> -->
         </div>
       </div>
-
-      <div class="col col-5">
+      <!-- Maps -->
+      <div class="col-lg-4 col-sm-10 container-map">
+        <ApartmentMap />
+      </div>      
+    </div>
+    <div class="row justify-content-center">
+      <!-- Description -->
+      <div class="col col-10">
         <div class="ms_card pt-3">
-          <h2 class="text-center mt-3">{{ apartment.title }}</h2>
           <div class="description-wrapper">
-            <div class="d-flex justify-content-center">
-              <p class="text-address mx-3" href="">{{ apartment.address }}</p>
-            </div>
 
             <ul class="d-flex">
               <li>
@@ -117,64 +116,59 @@ export default {
         </div>
       </div>
     </div>
+    <div class="wrapper-form">
+      <div class="row justify-content-center mt-5">
+        <div class="col-12">
+          <!-- Form messaggi -->
+          <section class="messages">
+            <h3 class="text-center text-uppercase py-3 pb-4">Contatta il proprietario:</h3>
 
-    <div class="row mt-5">
-      <div class="col-5">
-        <section class="mt-5">
-          <!-- Mappa -->
-          <ApartmentMap />
-        </section>
-      </div>
-      <div class="col-7">
-        <!-- Form messaggi -->
-        <section class="messages">
-          <h4 class="text-center m-3 text-uppercase">Contatta il proprietario:</h4>
+            <div class="alert alert-success" v-if="success">
+              Il tuo messaggio è stato inviato. Ti rispondiamo a breve.
+            </div>
+            <div class="text-center" v-if="loading">Invio ...</div>
 
-          <div class="alert alert-success" v-if="success">
-            Il tuo messaggio è stato inviato. Ti rispondiamo a breve.
-          </div>
-          <div class="text-center" v-if="loading">Invio ...</div>
-
-          <form @submit.prevent="sendForm()">
-            <div class="mb-3">
-              <label for="name">Nome</label>
-                <input
-                  type="text"
-                  id="name"
+            <form @submit.prevent="sendForm()">
+              <div class="mb-3">
+                <label for="name">Nome</label>
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-control"
+                    :class="{ 'is-invalid': errors.name }"
+                    v-model="name"
+                  />
+                <small class="invalid-feedback" v-if="errors.name">{{
+                  errors.name[0]
+                }}</small>
+              </div>
+              <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" v-model="email" />
+              </div>
+              <div class="mb-3">
+                <label for="message">Messaggio</label>
+                <textarea
+                  id="message"
+                  rows="10"
                   class="form-control"
-                  :class="{ 'is-invalid': errors.name }"
-                  v-model="name"
+                  v-model="message"
+                ></textarea>
+              </div>
+              <div>
+                <input
+                  type="hidden"
+                  name="apartment_id"
+                  v-model="this.apartment.apartment_id"
                 />
-              <small class="invalid-feedback" v-if="errors.name">{{
-                errors.name[0]
-              }}</small>
-            </div>
-            <div class="mb-3">
-              <label for="email">Email</label>
-              <input type="email" id="email" class="form-control" v-model="email" />
-            </div>
-            <div class="mb-3">
-              <label for="message">Messaggio</label>
-              <textarea
-                id="message"
-                rows="10"
-                class="form-control"
-                v-model="message"
-              ></textarea>
-            </div>
-            <div>
-              <input
-                type="hidden"
-                name="apartment_id"
-                v-model="this.apartment.apartment_id"
-              />
-            </div>
-            <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-main">INVIA</button>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-main">INVIA</button>
 
-            </div>
-          </form>
-        </section>
+              </div>
+            </form>
+          </section>
+        </div>
       </div>
     </div>
   </div>
@@ -183,58 +177,70 @@ export default {
 <style lang="scss">
 .container {
   padding-top: 100px;
-
+  h2 {
+    font-size: 30px;
+    font-weight: 550;
+    color: #303658;
+  }
+  .wrapper-form {
+    color: white;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #303658, $alpha: 0.70);
+    border-radius: 10px;
+  }
   .row {
     margin: 0 auto;
-
-    .col {
-      min-height: 50vh;
-
-      .ms_card {
-        .description-wrapper {
-          width: 70%;
-          margin: 1.5rem auto;
-          text-align: center;
-
-          .text-address {
-            font-style: italic;
-          }
-
-          ul {
-            margin-top: 1em;
-            margin-bottom: 1.5em;
-            justify-content: space-between;
-            padding-left: 0;
-
-            li {
-              list-style-type: none;
-              margin: 1em;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              i.fa-solid {
-                height: 20px;
-                width: 20px;
-                color: #EC2B46;
-              }
-              strong {
-                color: #EC2B46;
-                padding-top: 1em;
-                font-size: 18px;
-              }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0 40px 0 40px;
+      }
+    .ms_card {       
+      .description-wrapper {
+        margin: 0 auto;
+        width: 70%;
+        text-align: center;
+        .text-address {
+          font-style: italic;
+        }
+        ul {
+          margin-top: 1em;
+          margin-bottom: 1.5em;
+          justify-content: space-between;
+          padding-left: 0;
+          li {
+            list-style-type: none;
+            margin: 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            i.fa-solid {
+              height: 20px;
+              width: 20px;
+              color: #EC2B46;
+            }
+            strong {
+              color: #EC2B46;
+              padding-top: 1em;
+              font-size: 22px;
             }
           }
-          .services-list {
-            color: #EC2B46;
+        }
+        .services-list {
+          color: #EC2B46;
+          li {
+            font-weight: 550;
+            font-size: 18px;
           }
-
-          hr {
-            width: 70%;
-            margin: 0 auto;
-          }
+        }
+        hr {
+          width: 70%;
+          margin: 0 auto;
         }
       }
     }
+
   }
   .messages {
     width: 70%;

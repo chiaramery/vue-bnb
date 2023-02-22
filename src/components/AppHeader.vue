@@ -161,6 +161,11 @@ header {
       max-width: 1140px;
     }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
     ul, 
     .nav-link {
       font-weight: 550;
@@ -192,6 +197,11 @@ header {
     .logo {
       display: flex;
       align-items: center;
+      a {
+        font-size: 30px;
+        font-weight: 550;
+
+      }
     }
     .nav-menu {
       display: flex;
