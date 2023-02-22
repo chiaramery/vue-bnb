@@ -60,7 +60,6 @@ export default {
         axios
           .get("http://localhost:8000/api/apartments", { params })
           .then((resp) => {
-            console.log(resp.data);
             this.apartments = resp.data.apartment;
             console.log(this.apartments);
           });
@@ -119,7 +118,7 @@ export default {
     </div>
   </div>
   <main>
-    <div class="container">
+    <div class="container m-0 p-0">
       <div
         class="row bg-white gy-4 justify-content-center justify-content-md-start"
       >

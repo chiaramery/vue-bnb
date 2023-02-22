@@ -197,7 +197,7 @@ export default {
   z-index: 50;
   background-color: #ec2b46;
   left: -400px;
-  top: 60px;
+  top: 100px;
   transition: all 0.4s ease-in-out;
 
   .cont-filters {

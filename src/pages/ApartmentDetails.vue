@@ -19,7 +19,7 @@ export default {
   },
   components: {
     ApartmentMap,
-    AppBackAnimation
+    AppBackAnimation,
   },
   created() {
     const slug = this.$route.params.slug;
@@ -64,31 +64,29 @@ export default {
   <AppBackAnimation />
   <div class="container">
     <div class="row justify-content-center">
-      <h2 class=" mt-3">{{ apartment.title }}</h2>
+      <h2 class="mt-3">{{ apartment.title }}</h2>
       <p class="text-address mx-3" href="">{{ apartment.address }}</p>
       <!-- Image -->
       <div class="col-lg-8 col-sm-10 ms_card">
         <div class="container-image">
-          <img src="../img/jumbotron.jpg" alt="">
-          <!-- <img
+          <img
             v-if="apartment.image"
             :src="`${url}/storage/${apartment.image}`"
             alt=""
           />
-          <p v-else>No Image</p> -->
+          <p v-else>No Image</p>
         </div>
       </div>
       <!-- Maps -->
       <div class="col-lg-4 col-sm-10 container-map">
         <ApartmentMap />
-      </div>      
+      </div>
     </div>
     <div class="row justify-content-center">
       <!-- Description -->
       <div class="col col-10">
         <div class="ms_card pt-3">
           <div class="description-wrapper">
-
             <ul class="d-flex">
               <li>
                 <i class="fa-solid fa-door-open"></i>
@@ -120,11 +118,13 @@ export default {
       </div>
     </div>
     <div class="wrapper-form">
-      <div class="row justify-content-center mt-5">
+      <div class="row justify-content-center mt-5 mb-5">
         <div class="col-12">
           <!-- Form messaggi -->
           <section class="messages">
-            <h3 class="text-center text-uppercase py-3 pb-4">Contatta il proprietario:</h3>
+            <h3 class="text-center text-uppercase py-3 pb-4">
+              Contatta il proprietario:
+            </h3>
 
             <div class="alert alert-success" v-if="success">
               Il tuo messaggio è stato inviato. Ti rispondiamo a breve.
@@ -134,20 +134,25 @@ export default {
             <form @submit.prevent="sendForm()">
               <div class="mb-3">
                 <label for="name">Nome</label>
-                  <input
-                    type="text"
-                    id="name"
-                    class="form-control"
-                    :class="{ 'is-invalid': errors.name }"
-                    v-model="name"
-                  />
+                <input
+                  type="text"
+                  id="name"
+                  class="form-control"
+                  :class="{ 'is-invalid': errors.name }"
+                  v-model="name"
+                />
                 <small class="invalid-feedback" v-if="errors.name">{{
                   errors.name[0]
                 }}</small>
               </div>
               <div class="mb-3">
                 <label for="email">Email</label>
-                <input type="email" id="email" class="form-control" v-model="email" />
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control"
+                  v-model="email"
+                />
               </div>
               <div class="mb-3">
                 <label for="message">Messaggio</label>
@@ -167,7 +172,6 @@ export default {
               </div>
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-main">INVIA</button>
-
               </div>
             </form>
           </section>
@@ -189,17 +193,17 @@ export default {
     color: white;
     width: 100%;
     height: 100%;
-    background-color: rgba($color: #303658, $alpha: 0.70);
+    background-color: #7d8196;
     border-radius: 10px;
   }
   .row {
     margin: 0 auto;
-      img {
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 0 40px 0 40px;
-      }
-    .ms_card {       
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 0 40px 0 40px;
+    }
+    .ms_card {
       .description-wrapper {
         margin: 0 auto;
         width: 70%;
@@ -221,17 +225,17 @@ export default {
             i.fa-solid {
               height: 20px;
               width: 20px;
-              color: #EC2B46;
+              color: #ec2b46;
             }
             strong {
-              color: #EC2B46;
+              color: #ec2b46;
               padding-top: 1em;
               font-size: 22px;
             }
           }
         }
         .services-list {
-          color: #EC2B46;
+          color: #ec2b46;
           li {
             font-weight: 550;
             font-size: 18px;
@@ -243,29 +247,28 @@ export default {
         }
       }
     }
-
   }
   .messages {
     width: 70%;
     margin: 2rem auto;
   }
   .btn-main {
-  position: relative;
-  background-color: #EC2B46;
-  border: none;
-  font-size: 17px;
-  font-weight: bold;
-  color: #FFFFFF;
-  text-align: center;
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  letter-spacing: 1px;
-  padding: 0.5em 1em;
+    position: relative;
+    background-color: #ec2b46;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    letter-spacing: 1px;
+    padding: 0.5em 1em;
 
     &:hover {
-      background-color: rgba(185, 32, 52, 0.90);;
+      background-color: rgba(185, 32, 52, 0.9);
     }
   }
   .btn-main:after {
@@ -278,13 +281,13 @@ export default {
     margin-left: -20px !important;
     margin-top: -120%;
     opacity: 0;
-    transition: all 0.8s
+    transition: all 0.8s;
   }
   .btn-main:active:after {
     padding: 0;
     margin: 0;
     opacity: 1;
-    transition: 0s
+    transition: 0s;
   }
 }
 </style>
