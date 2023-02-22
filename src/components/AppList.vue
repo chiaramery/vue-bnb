@@ -19,20 +19,20 @@ export default {
 
 <template>
   <!-- <div class="cards-bool">
-    <div class="card-body">
-      <div class="img-body">
-        <img :src="`${baseUrl}/storage/${apartment.image}`" alt="">
-      </div>
-      <div class="title">
-        <h4 class="t-card">{{ apartment.title }}</h4>
-        <p class="s-card">{{ apartment.address }}</p>
-      </div>
-      <div class="more-info">
-        <router-link :to="{ name: 'single-apartment', params: { slug: apartment.slug } }" class="btn-cards"
-          href="">More</router-link>
-      </div>
-    </div>
-</div> -->
+          <div class="card-body">
+            <div class="img-body">
+              <img :src="`${baseUrl}/storage/${apartment.image}`" alt="">
+            </div>
+            <div class="title">
+              <h4 class="t-card">{{ apartment.title }}</h4>
+              <p class="s-card">{{ apartment.address }}</p>
+            </div>
+            <div class="more-info">
+              <router-link :to="{ name: 'single-apartment', params: { slug: apartment.slug } }" class="btn-cards"
+                href="">More</router-link>
+            </div>
+          </div>
+      </div> -->
   <div class="super-card">
     <div class="title-card">
       <h3>{{ apartment.title }}</h3>
@@ -42,12 +42,8 @@ export default {
       </div>
       <p>{{ apartment.address }}</p>
       <p>{{ apartment.square_meters }} Mq</p>
-      <router-link
-        :to="{ name: 'single-apartment', params: { slug: apartment.slug } }"
-        class="btn-register"
-        href=""
-        >Dettagli</router-link
-      >
+      <router-link :to="{ name: 'single-apartment', params: { slug: apartment.slug } }" class="btn-register"
+        href="">Dettagli</router-link>
     </div>
     <div class="img-card">
       <img :src="`${baseUrl}/storage/${apartment.image}`" alt="" />
@@ -59,7 +55,6 @@ export default {
 @use "../styles/general.scss" as *;
 
 .super-card {
-  box-shadow: -1px 1px 5px -1px rgba(31, 31, 31, 0.49);
   width: 100%;
   height: 300px;
   display: flex;
