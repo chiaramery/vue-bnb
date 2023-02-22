@@ -28,7 +28,7 @@ export default {
     this.checkScreen();
   },
   mounted() {
-    window.addEventListener('scroll', this.updateScroll);
+    window.addEventListener("scroll", this.updateScroll);
   },
   methods: {
     toggleMobileNav() {
@@ -51,13 +51,13 @@ export default {
       this.mobile = false;
       this.mobileNav = false;
       return;
-    }
+    },
   },
 };
-
 </script>
 
-<template><!-- Navbar -->
+<template>
+  <!-- Navbar -->
   <!-- <nav class="navbar">
           <div class="container-fluid d-flex align-items-center">
             <div class="logo">
@@ -92,30 +92,43 @@ export default {
   <header :class="{ 'scrolled-nav': scrolledNav }">
     <nav class="d-flex justify-content-between pt-3">
       <div class="logo">
-        <a href="http://localhost:8000">BOOL<span>bnb</span></a>
+        <a href="/">BOOL<span>bnb</span></a>
       </div>
       <div class="nav-links">
         <ul v-show="!mobile" class="nav-menu">
           <li v-for="(item, index) in menuItems" :key="index">
-            <router-link :to="{ name: item.routeName }" class="nav-link" aria-current="page">{{ item.label
-            }}</router-link>
+            <router-link
+              :to="{ name: item.routeName }"
+              class="nav-link"
+              aria-current="page"
+              >{{ item.label }}</router-link
+            >
           </li>
           <li class="pb-1">
-            <a href="http://localhost:8000/register">Registrati</a>
+            <a href="http://localhost:8000/register">Accedi</a>
           </li>
         </ul>
       </div>
       <div class="icon-hamburger">
-        <i @click="toggleMobileNav" v-show="mobile" class="fa-solid fa-bars" :class="{ 'active-icon': mobileNav }"></i>
+        <i
+          @click="toggleMobileNav"
+          v-show="mobile"
+          class="fa-solid fa-bars"
+          :class="{ 'active-icon': mobileNav }"
+        ></i>
       </div>
       <transition name="mobile-nav">
         <ul v-show="mobileNav" class="dropdown-nav">
           <li v-for="(item, index) in menuItems" :key="index">
-            <router-link :to="{ name: item.routeName }" class="nav-link" aria-current="page">{{ item.label
-            }}</router-link>
+            <router-link
+              :to="{ name: item.routeName }"
+              class="nav-link"
+              aria-current="page"
+              >{{ item.label }}</router-link
+            >
           </li>
           <li>
-            <a href="http://localhost:8000/register">Registrati</a>
+            <a href="http://localhost:8000/register">Accedi</a>
           </li>
         </ul>
       </transition>
@@ -158,7 +171,7 @@ header {
     position: relative;
     transition: all 0.5s ease;
 
-    @media (min-width:1140px) {
+    @media (min-width: 1140px) {
       max-width: 1140px;
     }
 
@@ -265,7 +278,8 @@ header {
 
 .scrolled-nav {
   background-color: #303658;
-  box-shadow: 0 4px 6px -1px rgba(48, 54, 88, 0.1), 0 2px 4px -1px rgba(48, 54, 88, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(48, 54, 88, 0.1),
+    0 2px 4px -1px rgba(48, 54, 88, 0.06);
 
   nav {
     padding: 8px 0;

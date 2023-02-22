@@ -20,8 +20,6 @@ export default {
     AppHeaderVue,
     AppCard,
     AppJumboRegister,
-
-
   },
   methods: {
     getApartments() {
@@ -39,9 +37,7 @@ export default {
   },
   created() {
     this.getApartments();
-
   },
-
 };
 </script>
 
@@ -55,58 +51,113 @@ export default {
     </div>
     <div class="cont-filters">
       <h4 class="h4 mb-4 text-white">Specifiche</h4>
-      <form class="form-control bg-transparent border-0 p-0" @submit.prevent="getApartments">
+      <form
+        class="form-control bg-transparent border-0 p-0"
+        @submit.prevent="getApartments"
+      >
         <div class="d-flex align-items-center justify-content-between mb-2">
           <label class="text-white" for="number">Bagni</label>
-          <input type="number" id="number" v-model="bathrooms" class="form-number text-end" />
+          <input
+            type="number"
+            id="number"
+            v-model="bathrooms"
+            class="form-number text-end"
+            min="1"
+            max="30"
+          />
         </div>
         <div class="d-flex align-items-center justify-content-between mb-2">
           <label class="text-white">Letti</label>
-          <input type="number" v-model="beds" class="form-number" />
+          <input
+            type="number"
+            v-model="beds"
+            class="form-number"
+            min="1"
+            max="30"
+          />
         </div>
         <div class="d-flex align-items-center justify-content-between">
           <label class="text-white">Stanze</label>
-          <input type="number" v-model="rooms" class="form-number" />
+          <input
+            type="number"
+            v-model="rooms"
+            class="form-number"
+            min="1"
+            max="30"
+          />
         </div>
-
-
 
         <label class="h4 mt-4 mb-4 text-center text-white">Servizi</label>
         <div class="row">
           <div class="col-6">
             <label class="service" for="wifi">
-              <input type="checkbox" name="services[]" value="1" id="wifi" v-model="services" />
+              <input
+                type="checkbox"
+                name="services[]"
+                value="1"
+                id="wifi"
+                v-model="services"
+              />
               <span>Wifi</span>
             </label>
           </div>
           <div class="col-6">
             <label class="service" for="parking">
-              <input type="checkbox" name="services[]" value="2" id="parking" v-model="services" />
+              <input
+                type="checkbox"
+                name="services[]"
+                value="2"
+                id="parking"
+                v-model="services"
+              />
               <span>Parcheggio</span>
             </label>
-
           </div>
           <div class="col-6">
             <label class="service" for="pool">
-              <input type="checkbox" name="services[]" value="3" id="pool" v-model="services" />
+              <input
+                type="checkbox"
+                name="services[]"
+                value="3"
+                id="pool"
+                v-model="services"
+              />
               <span>Piscina</span>
             </label>
           </div>
           <div class="col-6">
             <label class="service" for="portineria">
-              <input type="checkbox" name="services[]" value="4" id="portineria" v-model="services" />
+              <input
+                type="checkbox"
+                name="services[]"
+                value="4"
+                id="portineria"
+                v-model="services"
+              />
               <span>Portineria</span>
             </label>
           </div>
           <div class="col-6">
             <label class="service" for="sauna">
-              <input type="checkbox" name="services[]" value="5" id="sauna" v-model="services" />
+              <input
+                type="checkbox"
+                name="services[]"
+                value="5"
+                id="sauna"
+                v-model="services"
+              />
               <span>Sauna</span>
             </label>
           </div>
           <div class="col-6">
             <label class="service" for="vistamare">
-              <input type="checkbox" name="services[]" value="6" id="vistamare" v-model="services" />
+              <input
+                type="checkbox"
+                name="services[]"
+                value="6"
+                id="vistamare"
+                v-model="services"
+              />
               <span>Piscina</span>
             </label>
           </div>
@@ -117,9 +168,15 @@ export default {
   </div>
   <div class="contenitore-uno">
     <div class="container">
-      <div class="row bg-white-s gy-4 justify-content-center justify-content-md-start">
-        <AppCard class="col-10 col-md-4 col-lg-3" :apartment="apartment" v-for="apartment in apartments"
-          :key="apartment.id" />
+      <div
+        class="row bg-white-s gy-4 justify-content-center justify-content-md-start"
+      >
+        <AppCard
+          class="col-10 col-md-4 col-lg-3"
+          :apartment="apartment"
+          v-for="apartment in apartments"
+          :key="apartment.id"
+        />
       </div>
     </div>
   </div>
@@ -133,14 +190,12 @@ export default {
   left: 0;
 }
 
-
-
 .search-nav {
   position: absolute;
   padding: 1.8rem;
   width: 400px;
   z-index: 50;
-  background-color: #EC2B46;
+  background-color: #ec2b46;
   left: -400px;
   top: 60px;
   transition: all 0.4s ease-in-out;
@@ -152,13 +207,12 @@ export default {
       border-radius: 0.375rem;
       border: none;
       padding: 0.5rem;
-
     }
 
     label input[type="checkbox"] {
       display: none;
 
-      &:checked~span {
+      &:checked ~ span {
         background-color: #303658;
         box-shadow: 0 2px 6px #1c2138;
         color: white;
@@ -170,7 +224,7 @@ export default {
       display: inline-block;
       background-color: white;
       padding: 0.2rem 1.6rem;
-      color: #EC2B46;
+      color: #ec2b46;
       border-radius: 0.375rem;
       font-size: 1rem;
       user-select: none;
@@ -178,17 +232,16 @@ export default {
       overflow: hidden;
 
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 50%;
-        background-color: rgba(255, 255, 255, 0.1)
+        background-color: rgba(255, 255, 255, 0.1);
       }
     }
   }
-
 
   /* .cont-filters.active {
     left: 0;
@@ -197,7 +250,7 @@ export default {
     position: absolute;
     top: 0;
     right: -130px;
-    background-color: #EC2B46;
+    background-color: #ec2b46;
     color: white;
     border: none;
     border-radius: 0.375rem;
@@ -206,7 +259,7 @@ export default {
 
   .btn-filter {
     background-color: white;
-    color: #EC2B46;
+    color: #ec2b46;
     text-transform: uppercase;
     font-weight: 600;
     border: none;
@@ -214,8 +267,6 @@ export default {
     padding: 0.3rem 1.8rem;
     margin-top: 2.5rem;
   }
-
-
 }
 
 .contenitore-uno {
@@ -224,12 +275,10 @@ export default {
   .bg-white-s {
     background-color: rgba(255, 255, 255, 0);
   }
-
 }
 
-
 /* Media query */
-@media screen and (max-width:776px) {
+@media screen and (max-width: 776px) {
   .search-nav {
     width: 300px;
     left: -300px;
@@ -238,10 +287,7 @@ export default {
       background-color: #303658;
       right: -100px;
       padding: 0.3rem 1rem;
-
     }
   }
-
-
 }
 </style>

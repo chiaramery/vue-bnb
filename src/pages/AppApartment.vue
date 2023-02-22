@@ -2,6 +2,7 @@
 import axios from "axios";
 import AppList from "../components/AppList.vue";
 import AppBackAnimation from "../components/AppBackAnimation.vue";
+import AppJumboRegister from "../components/AppJumboRegister.vue";
 export default {
   name: "AppApartment",
   data() {
@@ -13,7 +14,7 @@ export default {
   components: {
     AppList,
     AppBackAnimation,
-
+    AppJumboRegister,
   },
   created() {
     this.getApartments();
@@ -33,11 +34,19 @@ export default {
   <AppBackAnimation />
   <div class="contenitore-uno">
     <div class="contenitore container">
-      <div class="row bg-white-s gy-4 justify-content-center justify-content-lg-start">
-        <AppList class="col-10 p-0" :apartment="apartment" v-for="apartment in apartments" :key="apartment.id" />
+      <div
+        class="row bg-white-s gy-4 justify-content-center justify-content-lg-start"
+      >
+        <AppList
+          class="col-10 p-0"
+          :apartment="apartment"
+          v-for="apartment in apartments"
+          :key="apartment.id"
+        />
       </div>
     </div>
   </div>
+  <AppJumboRegister />
 </template>
 
 <style lang="scss" scoped>

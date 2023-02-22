@@ -17,7 +17,8 @@ export default {
 };
 </script>
 
-<template><!-- <div class="cards-bool">
+<template>
+  <!-- <div class="cards-bool">
     <div class="card-body">
       <div class="img-body">
         <img :src="`${baseUrl}/storage/${apartment.image}`" alt="">
@@ -35,21 +36,27 @@ export default {
   <div class="super-card">
     <div class="title-card">
       <h3>{{ apartment.title }}</h3>
+      <div v-if="apartment.is_active" class="favorite">
+        <i class="fas fa-star me-2"></i>
+        <span>Preferiti dall'utente</span>
+      </div>
       <p>{{ apartment.address }}</p>
       <p>{{ apartment.square_meters }} Mq</p>
-      <router-link :to="{ name: 'single-apartment', params: { slug: apartment.slug } }" class="btn-register"
-        href="">More</router-link>
+      <router-link
+        :to="{ name: 'single-apartment', params: { slug: apartment.slug } }"
+        class="btn-register"
+        href=""
+        >Dettagli</router-link
+      >
     </div>
     <div class="img-card">
-      <img :src="`${baseUrl}/storage/${apartment.image}`" alt="">
+      <img :src="`${baseUrl}/storage/${apartment.image}`" alt="" />
     </div>
   </div>
 </template>
 
 <style lang="scss">
 @use "../styles/general.scss" as *;
-
-
 
 .super-card {
   box-shadow: -1px 1px 5px -1px rgba(31, 31, 31, 0.49);
@@ -59,8 +66,6 @@ export default {
   position: relative;
   z-index: 5;
 
-
-
   .title-card {
     width: 300px;
     height: 100%;
@@ -68,6 +73,12 @@ export default {
     position: relative;
     background-color: #f1f3f9;
     z-index: 30;
+
+    .favorite {
+      color: white;
+      padding: 10px;
+      background-color: #ec2b46;
+    }
 
     h3 {
       margin-top: 2rem;
@@ -82,12 +93,9 @@ export default {
     }
   }
 
-
-
   .img-card {
     width: calc(100% - 300px);
     height: 100%;
-
 
     img {
       width: 100%;
@@ -104,7 +112,7 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     padding: 0.4rem 1rem;
-    background-color: #EC2B46;
+    background-color: #ec2b46;
     border-radius: 0.5rem;
     text-decoration: none;
     color: white;
@@ -112,16 +120,10 @@ export default {
     font-weight: 700;
     font-size: 0.8rem;
   }
-
-
-
 }
 
-
-@media screen and (max-width:776px) {
+@media screen and (max-width: 776px) {
   .super-card {
-
-
     .title-card {
       width: 100%;
       background-color: rgba(255, 255, 255, 0);
@@ -144,7 +146,7 @@ export default {
       z-index: 10;
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 100%;
         height: 100%;
