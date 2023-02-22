@@ -2,6 +2,7 @@
 import axios from "axios";
 import ApartmentMap from "../components/ApartmentMap.vue";
 import AppBackAnimation from "../components/AppBackAnimation.vue";
+import AppJumboRegister from "../components/AppJumboRegister.vue";
 export default {
   name: "ApartmentDetails",
   data() {
@@ -20,6 +21,7 @@ export default {
   components: {
     ApartmentMap,
     AppBackAnimation,
+    AppJumboRegister,
   },
   created() {
     const slug = this.$route.params.slug;
@@ -61,7 +63,6 @@ export default {
 };
 </script>
 <template>
-  <AppBackAnimation />
   <div class="container">
     <div class="row justify-content-center">
       <h2 class="mt-3">{{ apartment.title }}</h2>
@@ -179,6 +180,7 @@ export default {
       </div>
     </div>
   </div>
+  <AppJumboRegister />
 </template>
 
 <style lang="scss">

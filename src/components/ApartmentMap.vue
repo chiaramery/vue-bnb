@@ -45,6 +45,7 @@ export default {
 <style>
 #map {
   height: 50vh;
+  overflow: hidden;
   /* width: 90vw; */
 }
 </style>

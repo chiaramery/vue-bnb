@@ -42,8 +42,12 @@ export default {
       </div>
       <p>{{ apartment.address }}</p>
       <p>{{ apartment.square_meters }} Mq</p>
-      <router-link :to="{ name: 'single-apartment', params: { slug: apartment.slug } }" class="btn-register"
-        href="">Dettagli</router-link>
+      <router-link
+        :to="{ name: 'single-apartment', params: { slug: apartment.slug } }"
+        class="btn-register"
+        href=""
+        >Dettagli</router-link
+      >
     </div>
     <div class="img-card">
       <img :src="`${baseUrl}/storage/${apartment.image}`" alt="" />
@@ -76,6 +80,8 @@ export default {
     }
 
     h3 {
+      padding: 10px;
+      font-size: 1.3rem;
       margin-top: 2rem;
       color: #303658;
       font-weight: 900;
