@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import AppCard from "./AppCard.vue";
+import AppJumboRegister from "./AppJumboRegister.vue";
 /* import AppHeader from "./AppHeader.vue"; */
 // import SearchBox from "./SearchBox.vue";
 export default {
@@ -19,6 +20,7 @@ export default {
   components: {
     /* AppHeader, */
     AppCard,
+    AppJumboRegister,
     // SearchBox,
   },
   methods: {
@@ -81,36 +83,55 @@ export default {
     <!-- Jumbotron -->
     <div class="jumbotron d-flex align-items-center">
       <div class="form justify-content-center">
-
-        <h1 class="text-center my-3 mb-5">Cerca l'appartamento che fa per te</h1>
+        <h1 class="text-center my-3 mb-5">
+          Cerca l'appartamento che fa per te
+        </h1>
         <!-- SearchBox -->
         <div class="div-search-box d-flex align-items-center">
           <div class="autocomplete-input">
-            <input type="text" placeholder="Cerca" v-model="query" @input="search" />
+            <input
+              type="text"
+              placeholder="Cerca"
+              v-model="query"
+              @input="search"
+            />
             <ul class="autocomplete-results">
-              <li v-for="result in results" :key="result.id" @click="selectResult(result)">
+              <li
+                v-for="result in results"
+                :key="result.id"
+                @click="selectResult(result)"
+              >
                 {{ result.address.freeformAddress }}
               </li>
             </ul>
           </div>
           <div class="container-btn-main">
             <!-- SearchBox Button -->
-            <button class="btn btn-main ms-2" @click="filterResults">FILTRA</button>
-            <button class="btn btn-main btn-mobile ms-2" @click="filterResults"><i
-                class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="btn btn-main ms-2" @click="filterResults">
+              FILTRA
+            </button>
+            <button class="btn btn-main btn-mobile ms-2" @click="filterResults">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
           </div>
         </div>
-
       </div>
     </div>
   </div>
   <main>
     <div class="container">
-      <div class="row bg-light gy-4 justify-content-center justify-content-md-start">
-        <AppCard class="col-10 col-md-4 col-lg-3" :apartment="apartment" v-for="apartment in apartments"
-          :key="apartment.id" />
+      <div
+        class="row bg-white gy-4 justify-content-center justify-content-md-start"
+      >
+        <AppCard
+          class="col-10 col-md-4 col-lg-3"
+          :apartment="apartment"
+          v-for="apartment in apartments"
+          :key="apartment.id"
+        />
       </div>
     </div>
+    <AppJumboRegister />
   </main>
 </template>
 
@@ -118,14 +139,16 @@ export default {
 .jumbo-container {
   width: 100%;
   height: 800px;
-  background-image:
-    linear-gradient(145deg, rgba(185, 32, 52, 0.43), rgba(48, 54, 88, 0.82)),
-    url('../img/jumbotron.jpg');
+  background-image: linear-gradient(
+      145deg,
+      rgba(185, 32, 52, 0.43),
+      rgba(48, 54, 88, 0.82)
+    ),
+    url("../img/jumbotron.jpg");
   width: 100vw;
   color: white;
   background-size: cover;
   background-position: 25% 75%;
-
 }
 
 .jumbotron {
@@ -135,7 +158,7 @@ export default {
 
   h1 {
     padding-top: 5%;
-    padding-bottom: .5em;
+    padding-bottom: 0.5em;
     color: white;
     font-weight: 550;
   }
@@ -201,11 +224,11 @@ export default {
 
 .btn-main {
   position: relative;
-  background-color: #EC2B46;
+  background-color: #ec2b46;
   border: none;
   font-size: 17px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   transition-duration: 0.4s;
   text-decoration: none;
@@ -215,8 +238,7 @@ export default {
   padding: 0.5em 1em;
 
   &:hover {
-    background-color: rgba(185, 32, 52, 0.90);
-    ;
+    background-color: rgba(185, 32, 52, 0.9);
   }
 }
 
@@ -230,22 +252,18 @@ export default {
   margin-left: -20px !important;
   margin-top: -120%;
   opacity: 0;
-  transition: all 0.8s
+  transition: all 0.8s;
 }
 
 .btn-main:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
-  transition: 0s
+  transition: 0s;
 }
 
 .btn-mobile {
   display: none;
-}
-
-main {
-  background-color: rgb(238 238 238);
 }
 
 main {
@@ -257,7 +275,7 @@ main {
 }
 
 // Media query - Small devices
-@media screen and (max-width:992px) {
+@media screen and (max-width: 992px) {
   .jumbo-container {
     .jumbotron {
       width: 100%;
@@ -282,7 +300,7 @@ main {
 }
 
 // Media query - tablet devices
-@media screen and (max-width:1400px) {
+@media screen and (max-width: 1400px) {
   .form {
     width: 90%;
     //margin: 0 auto;

@@ -21,15 +21,23 @@ export default {
   <div class="cards-bool">
     <div class="card-body">
       <div class="img-body">
-        <img :src="`${baseUrl}/storage/${apartment.image}`" alt="">
+        <img :src="`${baseUrl}/storage/${apartment.image}`" alt="" />
       </div>
       <div class="title">
+        <div v-if="apartment.is_active" class="favorite" style="color: yellow">
+          <i class="fas fa-star"></i>
+          <span>Preferiti dall'utente</span>
+        </div>
         <h4 class="t-card">{{ apartment.title }}</h4>
         <p class="s-card">{{ apartment.address }}</p>
       </div>
       <div class="more-info">
-        <router-link :to="{ name: 'single-apartment', params: { slug: apartment.slug } }" class="btn-cards"
-          href="">More</router-link>
+        <router-link
+          :to="{ name: 'single-apartment', params: { slug: apartment.slug } }"
+          class="btn-cards"
+          href=""
+          >Dettagli</router-link
+        >
       </div>
     </div>
   </div>
@@ -43,7 +51,6 @@ export default {
   height: 330px;
 
   &:hover {
-
     transform: scale(1.02);
     cursor: pointer;
   }
@@ -56,7 +63,7 @@ export default {
 
     /* After */
     &::after {
-      content: '';
+      content: "";
       background-color: black;
       position: absolute;
       width: 100%;
@@ -117,7 +124,7 @@ export default {
       .btn-cards {
         text-decoration: none;
         padding: 0.75rem 3.75rem;
-        background-color: #EC2B46;
+        background-color: #ec2b46;
         border-radius: 0 20px 0 20px;
         color: white;
         font-weight: 700;
@@ -125,6 +132,5 @@ export default {
       }
     }
   }
-
 }
 </style>
